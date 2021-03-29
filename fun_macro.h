@@ -82,6 +82,16 @@ Must be called by the sectors.
 	v[6]=v[2]+v[5];
 RESULT(v[6])
 
+EQUATION("Country_Domestic_Energy_Demand")
+/*
+Calculates the domestic demand for energy.
+Must be called by the sectors.
+*/
+	v[2]=0;                                                      		//initializes the value for thr CYCLE
+	CYCLE(cur, "SECTORS")                                        		//CYCLE trought all sectors
+		v[2]=v[2]+SUMS(cur, "Firm_Energy_Demand");   			        //sums up the demand for imputs of all setors
+RESULT(v[2])
+
 
 EQUATION("Country_Domestic_Consumption_Demand")
 /*
@@ -382,6 +392,9 @@ RESULT(VS(capital, "Sector_Sales")*VS(capital, "Sector_Avg_Price"))
 
 EQUATION("Country_Nominal_Input_Production")
 RESULT(VS(input, "Sector_Sales")*VS(input, "Sector_Avg_Price"))
+
+EQUATION("Country_Nominal_Energy_Production")
+RESULT(VS(energy, "Sector_Sales")*VS(energy, "Sector_Avg_Price"))
 
 EQUATION("Country_Total_Nominal_Production")
 RESULT(WHTAVE("Sector_Avg_Price","Sector_Sales"))

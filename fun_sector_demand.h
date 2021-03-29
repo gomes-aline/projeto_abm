@@ -59,7 +59,9 @@ This must be changed in the case of more than 1 sector of each type.
 This variable also writes an analysis variable that evaluates the relative weight of exports on sector's total demand.
 */
 	if(V("id_intermediate_goods_sector")==1)
-		v[0]=V("Country_Domestic_Intermediate_Demand");                                                       
+		v[0]=V("Country_Domestic_Intermediate_Demand"); 
+	if(V("id_energy_goods_sector")==1)
+		v[0]=V("Country_Domestic_Energy_Demand");	
 	if(V("id_consumption_goods_sector")==1)
 		v[0]=V("Country_Domestic_Consumption_Demand");                                                          
 	if(V("id_capital_goods_sector")==1)
@@ -84,7 +86,9 @@ EQUATION("Sector_Extra_Imports")
 The extra import, if the sector can not meet its internal demand, is determined by the difference between the actual orders of the sector and its actual production plus the available stock of products. The value of these imports is obtained by multiplying the previous result by the external price of the inputs of the sector in question.
 */
 	if(V("id_intermediate_goods_sector")==1)
-		v[0]=V("Country_Domestic_Intermediate_Demand");                                                       
+		v[0]=V("Country_Domestic_Intermediate_Demand");  
+	if(V("id_energy_goods_sector")==1)
+		v[0]=V("Country_Domestic_Energy_Demand");	
 	if(V("id_consumption_goods_sector")==1)
 		v[0]=V("Country_Domestic_Consumption_Demand");                                                          
 	if(V("id_capital_goods_sector")==1)

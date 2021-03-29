@@ -13,6 +13,7 @@ object *financial;
 object *consumption;
 object *capital;
 object *input;
+object *energy;
 object *centralbank;
 object *aclass;
 object *bclass;
@@ -40,7 +41,8 @@ MODELBEGIN
 			#include "fun_firm_price.h"				// Firm's Price Variables
 			#include "fun_firm_profit.h"			// Firm's Profit Variables
 			#include "fun_firm_finance.h"			// Firm's Finance Variables
-			#include "fun_firm_inputs.h" 			// Firm's Input Variable      
+			#include "fun_firm_inputs.h" 			// Firm's Input Variable
+			#include "fun_firm_energy.h" 			// Firm's Energy Variable  			
 				#include "fun_capital_goods.h"  	// Capital Goods Object Variables
 #include "fun_analysis.h"           				// Variables for Analysis
 

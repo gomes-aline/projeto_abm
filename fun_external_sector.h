@@ -52,8 +52,14 @@ Total imports in nominal value are obtained from the sum of imports of all secto
 	CYCLES(country, cur, "SECTORS")
 		v[5]=v[5]+SUMS(cur, "Firm_Input_Imports");
 	v[6]=VS(input, "Sector_External_Price");
-	v[7]=(v[0]+v[1]*v[4]+v[5]*v[6])*v[2];
-RESULT(v[7])
+	v[7]=v[5]*v[6];
+	v[8]=0;
+	CYCLES(country, cur, "SECTORS")
+		v[8]=v[8]+SUMS(cur, "Firm_Energy_Imports");
+	v[9]=VS(energy, "Sector_External_Price");
+	v[10]=v[8]*v[9];
+	v[11]=(v[0]+v[1]*v[4]+v[7]+v[10])*v[2];
+RESULT(v[11])
 
 
 EQUATION("Country_Trade_Balance")

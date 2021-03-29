@@ -4,6 +4,7 @@ EQUATION("Initialization_2")
 consumption=SEARCH_CND("id_consumption_goods_sector",1);
 capital=SEARCH_CND("id_capital_goods_sector",1);
 input=SEARCH_CND("id_intermediate_goods_sector",1);
+energy=SEARCH_CND("id_energy_goods_sector",1);
 government=SEARCH("GOVERNMENT");
 financial=SEARCH("FINANCIAL");
 external=SEARCH("EXTERNAL_SECTOR");
@@ -25,6 +26,8 @@ v[12]=VS(consumption, "sector_number_object_firms");
 v[13]=VS(consumption, "sector_initial_price");
 v[14]=VS(consumption, "sector_input_tech_coefficient");
 v[15]=VS(consumption, "sector_input_import_share");
+v[914]=VS(consumption, "sector_energy_tech_coefficient");
+v[915]=VS(consumption, "sector_energy_import_share");
 v[16]=VS(consumption, "sector_initial_exports_share");
 v[17]=VS(consumption, "sector_initial_external_price");
 //CAPITAL PARAMETERS
@@ -34,6 +37,8 @@ v[22]=VS(capital, "sector_number_object_firms");
 v[23]=VS(capital, "sector_initial_price");
 v[24]=VS(capital, "sector_input_tech_coefficient");
 v[25]=VS(capital, "sector_input_import_share");
+v[924]=VS(capital, "sector_energy_tech_coefficient");
+v[925]=VS(capital, "sector_energy_import_share");
 v[26]=VS(capital, "sector_initial_exports_share");
 v[27]=VS(capital, "sector_initial_external_price");
 //INPUT PARAMETERS
@@ -43,8 +48,21 @@ v[32]=VS(input, "sector_number_object_firms");
 v[33]=VS(input, "sector_initial_price");
 v[34]=VS(input, "sector_input_tech_coefficient");
 v[35]=VS(input, "sector_input_import_share");
+v[934]=VS(input, "sector_energy_tech_coefficient");
+v[935]=VS(input, "sector_energy_import_share");
 v[36]=VS(input, "sector_initial_exports_share");
 v[37]=VS(input, "sector_initial_external_price");
+// ENERGY PARAMETERS
+v[930]=VS(energy, "sector_initial_depreciation_scale");
+v[931]=VS(energy, "sector_investment_frequency");
+v[932]=VS(energy, "sector_number_object_firms");
+v[933]=VS(energy, "sector_initial_price");
+v[9341]=VS(energy, "sector_input_tech_coefficient");
+v[9351]=VS(energy, "sector_input_import_share");
+v[9342]=VS(energy, "sector_energy_tech_coefficient");
+v[9352]=VS(energy, "sector_energy_import_share");
+v[936]=VS(energy, "sector_initial_exports_share");
+v[937]=VS(energy, "sector_initial_external_price");
 //EXTERNAL SECTOR PARAMETERS
 v[40]=VS(external, "external_interest_rate");
 v[41]=VS(external, "initial_external_income_scale");
@@ -91,7 +109,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[106]=v[104]*v[61];								//government nominal consumption
 	v[107]=v[104]*v[62];								//government nominal investment
 	v[108]=v[104]*v[63];								//government nominal inputs
-	v[109]=v[106]/v[13];								//government real consumption
+ 	v[109]=v[106]/v[13];								//government real consumption
 	v[110]=v[107]/v[23];								//government real investment
 	v[111]=v[108]/v[33];								//government real inputs
 	v[112]=v[104]-v[106]-v[107]-v[108];					//government wages
@@ -124,18 +142,22 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[125]=v[123]*v[16];								//country nominal consuption exports
 	v[126]=v[123]*v[26];								//country nominal capital exports
 	v[127]=v[123]*v[36];								//country nominal input exports
+    v[9127]=v[123]*v[936];								//country nominal energy exports
 	v[128]=v[125]/v[13];								//country real consumption exports
 	v[129]=v[126]/v[23];								//country real capital exports
 	v[130]=v[127]/v[33];								//country real input exports
+    v[9130]=v[9127]/v[933];								//country real energy exports
 
 	//SECTORAL DEMAND CALCULATION
-	v[140]=v[100]*(1-v[1]-v[2]-v[3])-v[103];														//nominal domestic consumption
-	v[141]=(v[140]/v[13])+v[128]+v[109];															//real consumption demand
-	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[10]*v[12]/v[11])+v[129]+v[110];				//real capital demand
-	v[143]=(v[141]*v[14]*(1-v[15])+v[142]*v[24]*(1-v[25])+v[130]+v[111])/(1-v[34]*(1-v[35]));		//real input demand
+	v[140]=v[100]*(1-v[1]-v[2]-v[3])-v[103];																//nominal domestic consumption
+	v[141]=(v[140]/v[13])+v[128]+v[109];																	//real consumption demand
+	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[10]*v[12]/v[11])+v[129]+v[110];						//real capital demand
+	v[143]=(v[141]*v[14]*(1-v[15])+v[142]*v[24]*(1-v[25])+v[130]+v[111])/(1-v[34]*(1-v[35]));		    	//real input demand
+    v[9143]=(v[141]*v[914]*(1-v[915])+v[142]*v[924]*(1-v[925])+v[9130])/(1-v[934]*(1-v[935]));		//real energy demand
 	WRITES(consumption, "sector_initial_demand", v[141]);
 	WRITES(capital, "sector_initial_demand", v[142]);
 	WRITES(input, "sector_initial_demand", v[143]);
+    WRITES(energy, "sector_initial_demand", v[9143]);
 
 	v[270]=WHTAVE("sector_initial_price", "sector_initial_demand")/SUM("sector_initial_demand");	//average price
 	
@@ -159,6 +181,8 @@ CYCLE(cur, "SECTORS")
 	v[153]=VS(cur, "sector_initial_price");
 	v[154]=VS(cur, "sector_input_tech_coefficient");
 	v[155]=VS(cur, "sector_input_import_share");
+    v[9154]=VS(cur, "sector_energy_tech_coefficient");
+    v[9155]=VS(cur, "sector_energy_import_share");
 	v[156]=VS(cur, "sector_desired_degree_capacity_utilization");
 	v[157]=VS(cur, "sector_initial_external_price");
 	v[158]=VS(cur, "sector_capital_output_ratio");
@@ -180,6 +204,9 @@ CYCLE(cur, "SECTORS")
 	v[173]=v[150]*v[154]*(1-v[155])*v[33];							//sector domestic input expenses
 	v[174]=v[150]*v[154]*v[155]*v[37]*v[44];						//sector imported input expenses
 	v[175]=v[173]+v[174];											//sector total input expenses
+    v[9173]=v[150]*v[9154]*(1-v[9155])*v[933];					 	//sector domestic energy expenses
+    v[9174]=v[150]*v[9154]*v[9155]*v[937]*v[44];					//sector imported energy expenses
+    v[9175]=v[9173]+v[9174];										//sector total energy expenses
 	v[176]=v[150]*v[164];											//sector gross profits
 	
 	v[177]=v[150]/v[156];											//sector desired capacity
@@ -324,6 +351,7 @@ CYCLE(cur, "SECTORS")
 v[210]+=v[171];														//total indirect taxation
 v[211]+=v[172];														//total RND expenses
 v[212]+=v[174];														//total imported imput expenses
+v[9212]+=v[9174];												    //total imported energy expenses
 v[213]+=v[182];														//total firms stock deposits
 v[214]+=v[183];														//total stock loans
 v[215]+=v[185];														//total interest payment

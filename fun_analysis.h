@@ -201,7 +201,7 @@ RESULT(VS(cclass, "Class_Wealth_Share"))
 
 /*****SECTORAL STATS*****/
 
-EQUATION("P_C")//Average Price of Consumption good secto
+EQUATION("P_C")//Average Price of Consumption good sector
 RESULT(VS(consumption, "Sector_Avg_Price"))
 
 EQUATION("P_K")//Average Price of Capital good sector
@@ -209,6 +209,9 @@ RESULT(VS(capital, "Sector_Avg_Price"))
 
 EQUATION("P_I")//Average Price of Intermediate good sector
 RESULT(VS(input, "Sector_Avg_Price"))
+
+EQUATION("P_E")//Average Price of Energy sector
+RESULT(VS(energy, "Sector_Avg_Price"))
 
 EQUATION("W_C")//Average Wage of Consumption good sector
 RESULT(VS(consumption, "Sector_Avg_Wage"))
@@ -219,6 +222,9 @@ RESULT(VS(capital, "Sector_Avg_Wage"))
 EQUATION("W_I")//Average Wage of Intermediate good sector
 RESULT(VS(input, "Sector_Avg_Wage"))
 
+EQUATION("W_E")//Average Wage of Energy sector
+RESULT(VS(energy, "Sector_Avg_Wage"))
+
 EQUATION("MK_C")//Average Markup of Consumption good sector
 RESULT(VS(consumption, "Sector_Avg_Markup"))
 
@@ -227,6 +233,9 @@ RESULT(VS(capital, "Sector_Avg_Markup"))
 
 EQUATION("MK_I")//Average Markup of Intermediate good sector
 RESULT(VS(input, "Sector_Avg_Markup"))
+
+EQUATION("MK_E")//Average Markup of Energy sector
+RESULT(VS(energy, "Sector_Avg_Markup"))
 
 EQUATION("PROD_C")//Average Productivity of Consumption good sector
 RESULT(VS(consumption, "Sector_Avg_Productivity"))
@@ -237,6 +246,9 @@ RESULT(VS(capital, "Sector_Avg_Productivity"))
 EQUATION("PROD_I")//Average Productivity of Intermediate good sector
 RESULT(VS(input, "Sector_Avg_Productivity"))
 
+EQUATION("PROD_E")//Average Productivity of Energy sector
+RESULT(VS(energy, "Sector_Avg_Productivity"))
+
 EQUATION("U_C")//Unemployment Rate of Consumption good sector
 RESULT(VS(consumption, "Sector_Idle_Capacity"))
 
@@ -246,6 +258,9 @@ RESULT(VS(capital, "Sector_Idle_Capacity"))
 EQUATION("U_I")//Unemployment Rate of Intermediate good sector
 RESULT(VS(input, "Sector_Idle_Capacity"))
 
+EQUATION("U_E")//Unemployment Rate of Energy sector
+RESULT(VS(energy, "Sector_Idle_Capacity"))
+
 EQUATION("HHI_C")//Inverse HHI of Consumption good sector
 RESULT(VS(consumption, "Sector_Normalized_HHI"))
 
@@ -254,6 +269,9 @@ RESULT(VS(capital, "Sector_Normalized_HHI"))
 
 EQUATION("HHI_I")//Inverse HHI of Intermediate good sector
 RESULT(VS(input, "Sector_Normalized_HHI"))
+
+EQUATION("HHI_E")//Inverse HHI of Energy sector
+RESULT(VS(energy, "Sector_Normalized_HHI"))
 
 
 /*****COUNTRY GROWTH STATS*****/
