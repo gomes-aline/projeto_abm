@@ -46,19 +46,22 @@ EQUATION("Firm_Effective_Production")
 The actual production of each sector will be determined by the constraint imposed by the availability of inputs to the realization of the programmed production (or production of inputs desired, in the case of intermediate sectors). Such constraint is defined by the lower ratio between available inputs and the inputs required for production.
 */
 	v[0]=V("Firm_Planned_Production");                                                              //firm's planned production
-	v[1]=V("Firm_Available_Inputs_Ratio");
+	v[1]=V("Firm_Available_Inputs_Ratio");															
 	v[2]=v[1]*v[0];                                                                            		//effective planned production, constrained by the ratio of available inputs
+	v[3]=V("Firm_Available_Energy_Ratio");
+	v[4]=v[3]*v[0];																					//effective planned production, constrained by the ration of available energy
+	v[5]=min(v[2], v[4]);																			//effective planned production is the minimium possible considering available inputs and energy
 	SORT("CAPITALS", "Capital_Good_Productivity", "DOWN");                                        	//rule for the use of capital goods, sorts firm's capital goods by productivity in a decreasing order
-	v[3]=0;                                                                                      	//initializes the CYCLE
+	v[6]=0;                                                                                      	//initializes the CYCLE
 	CYCLE(cur, "CAPITALS")                                                                        	//CYCLE trought the capital goods of the firm
 	{
-		v[4]=VS(cur, "capital_good_productive_capacity");                                          	//capital productivity capacity
-		v[5]=max(0,(min(v[4], v[2])));                                                             	//maximum capacity of each capital goods, constrained by effective planned production, and it can not be negative
-		WRITES(cur, "Capital_Good_Production", v[5]);                                              	//the capacity of each capital goods is in fact its production
-		v[2]=v[2]-v[5];                                                                            	//it subracts the production of the first capital good from the effective planned production before going to the next capital good
-		v[3]=v[3]+v[5];                                                                            	//sums up the production of each capital good to determine firm's effective production
+		v[7]=VS(cur, "capital_good_productive_capacity");                                          	//capital productivity capacity
+		v[8]=max(0,(min(v[7], v[5])));                                                             	//maximum capacity of each capital goods, constrained by effective planned production, and it can not be negative
+		WRITES(cur, "Capital_Good_Production", v[8]);                                              	//the capacity of each capital goods is in fact its production
+		v[5]=v[5]-v[8];                                                                            	//it subracts the production of the first capital good from the effective planned production before going to the next capital good
+		v[6]=v[6]+v[8];                                                                            	//sums up the production of each capital good to determine firm's effective production
 	}
-RESULT(v[3])
+RESULT(v[6])
 
 
 EQUATION_DUMMY("Capital_Good_Production", "Firm_Effective_Production")
