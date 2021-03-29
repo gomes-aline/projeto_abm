@@ -90,7 +90,11 @@ Must be called by the sectors.
 	v[2]=0;                                                      		//initializes the value for thr CYCLE
 	CYCLE(cur, "SECTORS")                                        		//CYCLE trought all sectors
 		v[2]=v[2]+SUMS(cur, "Firm_Energy_Demand");   			        //sums up the demand for imputs of all setors
-RESULT(v[2])
+	v[0]=VS(energy, "Sector_Avg_Price");
+	v[1]=V("Government_Effective_Energy");
+	v[5]=v[0]!=0? v[1]/v[0] : 0;
+	v[6]=v[2]+v[5];
+RESULT(v[6])
 
 
 EQUATION("Country_Domestic_Consumption_Demand")

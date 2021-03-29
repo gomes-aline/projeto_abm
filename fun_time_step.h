@@ -54,7 +54,7 @@ V("Government_Desired_Unemployment_Benefits");
 V("Government_Desired_Investment");   
 V("Government_Desired_Consumption");  
 V("Government_Desired_Inputs"); 
-//V("Government_Desired_Energy"); 
+V("Government_Desired_Energy"); 
 V("Government_Surplus_Rate_Target");  
 V("Government_Max_Expenses_Surplus");  
 V("Government_Max_Expenses_Debt");  
@@ -66,7 +66,7 @@ V("Government_Effective_Unemployment_Benefits");
 V("Government_Effective_Consumption");  
 V("Government_Effective_Investment"); 
 V("Government_Effective_Inputs"); 
-//V("Government_Effective_Energy"); 
+V("Government_Effective_Energy"); 
                 		
 /*****CAPITAL GOODS DEMAND*****/
 V("Firm_Demand_Capital_Goods");                             

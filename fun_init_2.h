@@ -85,6 +85,7 @@ v[60]=VS(government, "government_initial_debt_gdp_ratio");
 v[61]=VS(government, "government_initial_share_consumption");
 v[62]=VS(government, "government_initial_share_capital");
 v[63]=VS(government, "government_initial_share_input");
+v[963]=VS(government, "government_initial_share_energy");
 //CENTRAL BANK PARAMETERS
 v[70]=VS(centralbank, "cb_target_annual_inflation");
 	
@@ -109,9 +110,11 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[106]=v[104]*v[61];								//government nominal consumption
 	v[107]=v[104]*v[62];								//government nominal investment
 	v[108]=v[104]*v[63];								//government nominal inputs
+	v[9108]=v[104]*v[63];								//government nominal energy
  	v[109]=v[106]/v[13];								//government real consumption
 	v[110]=v[107]/v[23];								//government real investment
 	v[111]=v[108]/v[33];								//government real inputs
+	v[9111]=v[9108]/v[933];								//government real energy
 	v[112]=v[104]-v[106]-v[107]-v[108];					//government wages
 	v[113]=v[103]/v[100];								//government surplus rate target
 	
@@ -121,6 +124,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	WRITELLS(government, "Government_Desired_Consumption", v[106], 0, 1);
 	WRITELLS(government, "Government_Desired_Investment", v[107], 0, 1);
 	WRITELLS(government, "Government_Desired_Inputs", v[108], 0, 1);
+	WRITELLS(government, "Government_Desired_Energy", v[9108], 0, 1);
 	WRITELLS(government, "Government_Surplus_Rate_Target", v[113], 0, 1);
 	WRITELLS(government, "Government_Debt", v[101], 0, 1);
 	WRITELLS(government, "Government_Total_Taxes", v[105], 0, 1);
@@ -153,7 +157,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[141]=(v[140]/v[13])+v[128]+v[109];																	//real consumption demand
 	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[10]*v[12]/v[11])+v[129]+v[110];						//real capital demand
 	v[143]=(v[141]*v[14]*(1-v[15])+v[142]*v[24]*(1-v[25])+v[130]+v[111])/(1-v[34]*(1-v[35]));		    	//real input demand
-    v[9143]=(v[141]*v[914]*(1-v[915])+v[142]*v[924]*(1-v[925])+v[9130])/(1-v[934]*(1-v[935]));		//real energy demand
+    v[9143]=(v[141]*v[914]*(1-v[915])+v[142]*v[924]*(1-v[925])+v[9130]+v[911])/(1-v[934]*(1-v[935]));		//real energy demand
 	WRITES(consumption, "sector_initial_demand", v[141]);
 	WRITES(capital, "sector_initial_demand", v[142]);
 	WRITES(input, "sector_initial_demand", v[143]);
@@ -172,7 +176,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	WRITELLS(external, "Country_Capital_Flows", v[121], 0, 1);
 	WRITELLS(external, "Country_International_Reserves_GDP_Ratio", v[43], 0, 1);
 	
-v[210]=v[211]=v[212]=v[213]=v[214]=v[215]=v[216]=v[217]=v[218]=v[219]=v[226]=0;
+v[210]=v[211]=v[212]=v[9212]=v[213]=v[214]=v[215]=v[216]=v[217]=v[218]=v[219]=v[226]=0;
 CYCLE(cur, "SECTORS")
 {
 	v[150]=VS(cur, "sector_initial_demand");
@@ -198,39 +202,39 @@ CYCLE(cur, "SECTORS")
 	v[168]=VS(cur, "sector_desired_inventories_proportion");
 	v[169]=VS(cur, "sector_price_frequency");
 	
-	v[170]=v[150]*v[153];											//sector revenue
-	v[171]=v[150]*v[153]*v[160];									//sector taxation
-	v[172]=v[150]*v[153]*(1-v[160])*v[161];							//sector rnd expenses
-	v[173]=v[150]*v[154]*(1-v[155])*v[33];							//sector domestic input expenses
-	v[174]=v[150]*v[154]*v[155]*v[37]*v[44];						//sector imported input expenses
-	v[175]=v[173]+v[174];											//sector total input expenses
-    v[9173]=v[150]*v[9154]*(1-v[9155])*v[933];					 	//sector domestic energy expenses
-    v[9174]=v[150]*v[9154]*v[9155]*v[937]*v[44];					//sector imported energy expenses
-    v[9175]=v[9173]+v[9174];										//sector total energy expenses
-	v[176]=v[150]*v[164];											//sector gross profits
+	v[170]=v[150]*v[153];														//sector revenue
+	v[171]=v[150]*v[153]*v[160];												//sector taxation
+	v[172]=v[150]*v[153]*(1-v[160])*v[161];										//sector rnd expenses
+	v[173]=v[150]*v[154]*(1-v[155])*v[33];										//sector domestic input expenses
+	v[174]=v[150]*v[154]*v[155]*v[37]*v[44];									//sector imported input expenses
+	v[175]=v[173]+v[174];														//sector total input expenses
+    v[9173]=v[150]*v[9154]*(1-v[9155])*v[933];					 				//sector domestic energy expenses
+    v[9174]=v[150]*v[9154]*v[9155]*v[937]*v[44];								//sector imported energy expenses
+    v[9175]=v[9173]+v[9174];													//sector total energy expenses
+	v[176]=v[150]*v[164];														//sector gross profits
 	
-	v[177]=v[150]/v[156];											//sector desired capacity
-	v[178]=v[177]/v[152];											//firm desired capacity
-	v[179]=ROUND(v[178]*v[158], "UP");								//firm number capitals
-	v[180]=v[179]*v[152];											//sector number capitals
-	v[181]=v[180]*v[23];											//sector nominal capital
-	v[182]=v[163]*v[181];											//sector stock deposits
-	v[183]=v[181]*(1+v[163])*v[162];								//sector stock loans
-	v[184]=v[102]+v[54]+v[56]*v[162];								//sector avg interest rate long term
-	v[185]=v[184]*v[183];											//sector interest payment
-	v[186]=v[182]*max(0,v[102]-v[52]);								//sector interest receivment
-	v[187]=v[170]-v[171]-v[172]-v[175]-v[185]+v[186]-v[176];		//sector wage payment
-	v[188]=v[187]*v[159]/v[150];									//sector wage rate
-	v[189]=(v[188]/v[159])+(v[175]/v[150]);							//sector unit variable cost
-	v[190]=v[153]/v[189];											//sector markup
-	v[191]=v[150]/v[159];											//sector employment
-	v[192]=v[183]/v[165];											//sector amortization expenses
-	v[193]=v[23]*(v[166]*v[152]/v[151]);							//sector investment expenses
-	v[194]=v[193]-v[192];											//sector retained profits
-	v[195]=v[176]-v[194];											//sector distributed profits
-	v[196]=v[195]/v[176];											//sector profit distribution rate
-	v[197]=v[180]*v[158];											//sector productive capacity
-	v[198]=v[150]/v[197];											//sector capacity utilization
+	v[177]=v[150]/v[156];														//sector desired capacity
+	v[178]=v[177]/v[152];														//firm desired capacity
+	v[179]=ROUND(v[178]*v[158], "UP");											//firm number capitals
+	v[180]=v[179]*v[152];														//sector number capitals
+	v[181]=v[180]*v[23];														//sector nominal capital
+	v[182]=v[163]*v[181];														//sector stock deposits
+	v[183]=v[181]*(1+v[163])*v[162];											//sector stock loans
+	v[184]=v[102]+v[54]+v[56]*v[162];											//sector avg interest rate long term
+	v[185]=v[184]*v[183];														//sector interest payment
+	v[186]=v[182]*max(0,v[102]-v[52]);											//sector interest receivment
+	v[187]=v[170]-v[171]-v[172]-v[175]-v[9175]-v[185]+v[186]-v[176];			//sector wage payment
+	v[188]=v[187]*v[159]/v[150];												//sector wage rate
+	v[189]=(v[188]/v[159])+(v[175]/v[150])+(v[9175]/v[150]);					//sector unit variable cost
+	v[190]=v[153]/v[189];														//sector markup
+	v[191]=v[150]/v[159];														//sector employment
+	v[192]=v[183]/v[165];														//sector amortization expenses
+	v[193]=v[23]*(v[166]*v[152]/v[151]);										//sector investment expenses
+	v[194]=v[193]-v[192];														//sector retained profits
+	v[195]=v[176]-v[194];														//sector distributed profits
+	v[196]=v[195]/v[176];														//sector profit distribution rate
+	v[197]=v[180]*v[158];														//sector productive capacity
+	v[198]=v[150]/v[197];														//sector capacity utilization
 	v[199]=(VS(cur,"sector_initial_exports_share")*v[123]/v[153])/(pow((v[157]*v[44]/v[153]),VS(cur,"sector_exports_elasticity_income"))*pow(v[120],VS(cur,"sector_exports_elasticity_income")));
 
 	//WRITTING SECTOR LAGGED VALUES
@@ -405,7 +409,7 @@ v[226]+=(v[193]-v[194]);											//total demand loans
 	v[231]=v[218]+v[223];											//total distributed profits
 	v[232]=v[230]+v[231];											//total households gross income	
 	v[233]=v[105]-v[210];											//total income taxation
-	v[235]=v[124]-v[212];											//total imported consumption expenses
+	v[235]=v[124]-v[212]-v[9212];									//total imported consumption expenses
 	
 	if(V("switch_class_tax_structure")==0)							    //taxation structure = no tax
 		v[234]=0;														//average direct tax rate							   				   				//class total tax
