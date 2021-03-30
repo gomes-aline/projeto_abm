@@ -152,7 +152,10 @@ EQUATION("Sector_Productive_Capacity")
 RESULT(SUM("Firm_Productive_Capacity"))
 
 EQUATION("Sector_Taxation")
-RESULT(SUM("Firm_Indirect_Tax"))
+v[1]=SUM("Firm_Indirect_Tax");
+v[2]=SUM("Firm_Energy_Tax");
+v[3]=v[1]+v[2];
+RESULT(v[3])
 
 EQUATION("Sector_Stock_Loans")
 RESULT(SUM("Firm_Stock_Loans"))

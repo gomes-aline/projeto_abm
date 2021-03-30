@@ -54,11 +54,14 @@ EQUATION("Firm_Energy_Cost")
 Unitary costs of energy. It's given by the domestic energy price plus the external energy price, weighted by the proportion of the demand met by domestic and external sectors
 */
 	v[0]=V("sector_energy_import_share");
-	v[1]=VLS(energy,"Sector_Avg_Price",1);                 //intermediate sector average price
-	v[2]=VLS(energy,"Sector_External_Price",1);            //sector external price
-	v[3]=V("Firm_Energy_Tech_Coefficient");               //sector energy technical relationship 
-	v[5]=V("Country_Exchange_Rate");                      //exchange rate
-	v[8]=v[1]*v[3]*(1-v[0])+v[3]*v[0]*v[2]*v[5];     	  //energy cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
+	v[1]=VLS(energy,"Sector_Avg_Price",1);                //intermediate sector average price
+	v[2]=VLS(energy,"Sector_External_Price",1);           //sector external price
+	v[3]=V("sector_energy_use_tax");					  //sector energy policy tax over energy use
+	v[4]=V("Country_Exchange_Rate");                      //exchange rate
+	v[5]=V("Firm_Energy_Tech_Coefficient");               //firm energy technical relationship
+	v[6]=v[1]*(1+v[3]);									  //sector domestic energy price with energy use tax
+	v[7]=v[2]*(1+v[3]);      							  //sector imported energy price with energy use tax
+	v[8]=v[6]*v[5]*(1-v[0])+v[7]*v[5]*v[0]*v[4];     	  //energy cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
 RESULT(v[8])
 
 EQUATION("Firm_Variable_Cost")
