@@ -95,14 +95,49 @@ Innovation process. The sucess depends on the amount ou recources alocated to in
 RESULT(v[8])
 
 
+EQUATION("Firm_Imitation_Energy_Efficiency")
+/*
+Imitation process. The sucess depends on the amount of recources alocated to imitation. Firms search for best energy efficiency of the sector, trying to copy if succeded.
+*/
+
+v[0]=VL("Firm_Energy_Tech_Coefficient",1);						//firm's energy tech coefficient last period
+if(V("switch_energy_efficiency_imitation")==1)
+{
+	v[1]=V("Firm_RND_Expenses");                    			//firm's RND expenses                       
+	v[2]=V("sector_innovation_proportion");    					//firm's share of RND expenses destinated to innovation
+	v[3]=(v[2]*v[1]);                           				//amount of recources for innovation
+	v[4]=1-exp(-v[3]);                     						//probability of success of the innovation depends on the parameter and the amount of recources available  
+	if(RND<v[4])                                				//draws a random number. if it is lower then innovation probability 
+		v[5]=VL("Sector_Min_Energy_Tech_Coefficient", 1);		//imitation has succeded and the firm can copy the minimum energy tech coefficient of the sector in the last period
+	else                                      					//if the random number is not lower than imitation probability
+		v[5]=v[0];													//imitation failed and the firm's new energy tech coefficient is the same than the last period
+}
+else
+v[5]=v[0];	
+RESULT(v[5])
 
 
-
-
-
-
-
-
-
-
-
+EQUATION("Firm_Innovation_Energy_Efficiency")
+/*
+Innovation process. The sucess depends on the amount ou recources alocated to innovation. Firms search for improvement in energy efficiency and the result depends on a random distribution with exonegous parameters.
+*/
+v[0]=VL("Firm_Energy_Tech_Coefficient",1);				//firm's energy tech coefficient last period
+if(V("switch_energy_efficiency_innovation")==1)
+{
+	v[1]=V("Firm_RND_Expenses");                    	//firm's RND expenses                       
+	v[2]=V("sector_innovation_proportion");    			//firm's share of RND expenses destinated to innovation
+	v[3]=(v[2]*v[1]);                           		//amount of recources for innovation
+	v[4]=1-exp(-v[3]);                     				//probability of success of the innovation depends on the parameter and the amount of recources available  
+	if(RND<v[4])                                		//draws a random number. if it is lower then innovation probability 
+	{
+		v[5]=norm(0.01,0.005);							//the energy efficiency improvemente will be a draw from a normal distribution
+		v[6]=max(0,v[5]);								//the energy improvement can never be negative
+		v[7]=v[0]-v[6];									//the firm's new energy tech coefficient is lower than the last period
+		v[8]=max(0.01,v[7]);							//the lower limit to energy efficiency is 1% (it can never be lower than 0.01)
+	}
+	else                                        		//if the random number is not lower then the innovation probability
+		v[8]=v[0];									 	//the firm's new energy tech coefficient is the same than the last period
+}
+else
+	v[8]=v[0];											// if the switch is of, the firm's energy tech coefficient is the same than the last period	
+RESULT(v[8])

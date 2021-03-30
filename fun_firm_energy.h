@@ -2,10 +2,17 @@
 
 EQUATION("Firm_Energy_Tech_Coefficient")
 /*
-Firm's energy tech coefficient is a function of the sector's initial tech coefficient and a parameter of an energy efficiency improvement by inovation
+Firm's energy tech coefficient is a function of the sector's initial tech coefficient and a parameter of an energy efficiency improvement by innovation/imitation
 */
-	v[0]=V("sector_energy_tech_coefficient");               //sector energy technical coefficient
-RESULT(v[0])
+	v[0]=V("sector_energy_tech_coefficient");               //sector energy technical coefficient;
+	v[1]=V("Firm_Innovation_Energy_Efficiency");				//Improvement in energy efficiency through innovation process
+	v[2]=V("Firm_Imitation_Energy_Efficiency");				//Improvement in energy efficiency through imitation process
+	v[3]=VL("Firm_Energy_Tech_Coefficient",1);				//firm's energy tech coefficient last period
+	if(v[3]==0)												//if firm's energy tech coefficient last period is zero
+		v[4]=v[0];											//firm's energy tech coefficient is equal to the sector inicial energy tech coefficient
+	else													//if firm's energy tech coefficient last period is not zero
+		v[4]=min(v[1],v[2]);								//firm's energy tech coefficient is the lowest between the result from innovation and from imitation
+RESULT(v[4])
 
 
 EQUATION("Firm_Available_Energy_Ratio")

@@ -325,3 +325,6 @@ RESULT(WHTAVE("Firm_Capacity_Utilization", "Firm_Market_Share"))
 EQUATION("Sector_Idle_Capacity")
 RESULT(1-V("Sector_Capacity_Utilization"))
 
+EQUATION("Sector_Min_Energy_Tech_Coefficient")
+RESULT(MIN("Firm_Energy_Tech_Coefficient"))
+

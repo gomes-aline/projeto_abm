@@ -144,7 +144,9 @@ V("Sector_Demand_Met_By_Imports");
 
 /*****R&D*****/
 V("Firm_Innovation_Productivity");                          
-V("Firm_Imitation_Productivity");                           
+V("Firm_Imitation_Productivity"); 
+V("Firm_Innovation_Energy_Efficiency");
+V("Firm_Imitation_Energy_Efficiency");                          
 V("Firm_Frontier_Productivity");                            
 V("Firm_Quality");										   	
 

@@ -251,6 +251,7 @@ CYCLE(cur, "SECTORS")
 	WRITELLS(cur, "Sector_Max_Productivity", v[159], 0, 1);
 	WRITELLS(cur, "Sector_Avg_Wage", v[188], 0, 1);
 	WRITELLS(cur, "Sector_Max_Quality", v[167], 0, 1);
+	WRITELLS(cur, "Sector_Min_Energy_Tech_Coefficient", v[9154], 0, 1);
 	for(i=1;i<=v[0]+1;i++) 
 		WRITELLS(cur, "Sector_Avg_Price", v[153], 0, i);
 	for(i=1;i<=v[0]+1;i++) 
