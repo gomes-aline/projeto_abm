@@ -311,7 +311,11 @@ EQUATION("Sector_Avg_Investment_Constraint_Rate")
 RESULT(WHTAVE("Firm_Investment_Constraint_Rate", "Firm_Market_Share"))
 
 EQUATION("Sector_SD_Investment_Rate")
-RESULT(SD("Firm_Investment_Rate"))
+if(V("id_energy_goods_sector")==1)
+	v[0]=0;
+else
+	v[0]=SD("Firm_Investment_Rate");
+RESULT(v[0])
 
 EQUATION("Sector_Avg_Internal_Finance_Rate")
 RESULT(WHTAVE("Firm_Internal_Finance_Rate", "Firm_Market_Share"))

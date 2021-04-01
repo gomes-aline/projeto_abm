@@ -12,85 +12,96 @@ v[0]=V("survival_period");
 v[17]=v[18]=v[19]=v[21]=v[23]=0;
 CYCLE(cur1, "SECTORS")
 {
-	i = COUNTS(cur1, "FIRMS" );									// count the existing number of firms 
-	v[11]=v[12]=v[14]=v[20]=v[24]=0;							// initialize the cycles
-	CYCLE_SAFES( cur1, cur, "FIRMS" )							// use a robust cycle to delete objects
+	if(V("id_energy_goods_sector")==1)
 	{
-     v[1]=VS(cur, "Firm_Market_Share");							//firm's curent market share
-     v[2]=VS(cur, "Firm_Productive_Capacity");					//firm's current productive capacity																				
-     v[3]=VS(cur, "firm_date_birth");							//firm's date birth
-	 v[4]=VS(cur, "Firm_Debt_Rate");						//firm's avg debt rate
-     v[5]=VLS(cur, "Firm_Avg_Debt_Rate", 1);					//firm's avg debt rate in the last period
-     v[6]=VS(cur, "Firm_Stock_Loans");
-     v[7]=VS(cur, "Firm_Stock_Deposits");
-     v[8]=VS(cur, "Firm_Capital");
-     v[9]=VS(cur, "firm_bank");
-	 cur2=SEARCH_CNDS(root, "bank_id", v[9]);
-	 
-     if ( v[1] <= 0.001 && i > 1 && t>(v[0]+v[3]))				//if firm's market share is near zero
-     {
-      //plog("\nFirm Deleted - Small Market Share");			//write on log window
-      	if (v[7]>=v[6])											//firm pays current debt with current deposits 
-      		{
-      		v[11]=v[11]+(v[7]-v[6]);							//deposits distributed to income classes (no need to substract from bank's stock)
-      		v[12]=v[12]+v[2];									//available productive capacity
-      		v[14]=v[14];										//defaulted loans
-      		v[20]=v[20];										//bankruptcy events
-      		}
-      	else													//if firm can not pay current debt with current deposits
-      		{
-       		v[11]=v[11];										//deposits distributed to income classes (no need to substract from bank's stock)
-      		v[12]=v[12]+v[2];									//available productive capacity
-      		v[14]=v[14]+(v[6]-v[7]);							//defaulted loans
-      		v[20]=v[20];										//bankruptcy events
-			v[15]=VS(cur2, "bank_defaulted_loans_temporary");
-			WRITES(cur2, "bank_defaulted_loans_temporary", (v[15]+v[6]-v[7]));
-      		}
-      DELETE(cur); 												//delete current firm
-      v[24]=v[24]+1;											//count number of exited firms
-	  --i;														//subtract 1 from the number of firms counter
-     }
-     else														//if firm's current market share is not near zero																																						//if firm's avg debt rate is not higher than 1 (do not delete current firm						
-     {
-		if(v[4]>1 &&i>1 && t>(v[0]+v[3]))
-		{
-		//plog("\nFirm Deleted - High Debt");					//write on log window
-      	if (v[7]>=v[6])											//firm pays current debt with current deposits 
-      		{
-      		v[11]=v[11]+(v[7]-v[6]);							//deposits distributed to income classes (no need to substract from bank's stock)
-      		v[12]=v[12]+v[2];									//available productive capacity
-      		v[14]=v[14];										//defaulted loans
-      		v[20]=v[20]+1;										//bankruptcy events
-      		}
-      	else													//if firm can not pay current debt with current deposits
-      		{
-       		v[11]=v[11];										//deposits distributed to income classes (no need to substract from bank's stock)
-      		v[12]=v[12]+v[2];									//available productive capacity
-      		v[14]=v[14]+(v[6]-v[7]);							//defaulted loans
-      		v[20]=v[20]+1;										//bankruptcy events
-			v[15]=VS(cur2, "bank_defaulted_loans_temporary");
-			WRITES(cur2, "bank_defaulted_loans_temporary", (v[15]+v[6]-v[7]));
-      		}
-		DELETE(cur); 											//delete current firm
-		v[24]=v[24]+1;											//count number of exited firms
-		--i;					
-		}
-		else
-		{
-        v[11]=v[11];											//deposits distributed to income classes (no need to substract from bank's stock)
-      	v[12]=v[12];											//available productive capacity
-      	v[14]=v[14];					  						//defaulted loans
-      	v[20]=v[20];											//bankruptcy events
-      	v[24]=v[24];
-      	}
-	 }
-	WRITES(cur1, "Sector_Productive_Capacity_Exit", v[12]);
+		v[17]=0;
+		v[18]=0;
+		v[19]=0;
+		v[21]=0;
+		v[23]=0;
 	}
-v[17]=v[17]+v[11];
-v[18]=v[18]+v[12];
-v[19]=v[19]+v[14];
-v[21]=v[21]+v[20];
-v[23]=v[23]+v[24];
+	else
+	{
+		i = COUNTS(cur1, "FIRMS" );									// count the existing number of firms 
+		v[11]=v[12]=v[14]=v[20]=v[24]=0;							// initialize the cycles
+		CYCLE_SAFES( cur1, cur, "FIRMS" )							// use a robust cycle to delete objects
+		{
+		 v[1]=VS(cur, "Firm_Market_Share");							//firm's curent market share
+		 v[2]=VS(cur, "Firm_Productive_Capacity");					//firm's current productive capacity																				
+		 v[3]=VS(cur, "firm_date_birth");							//firm's date birth
+		 v[4]=VS(cur, "Firm_Debt_Rate");						//firm's avg debt rate
+		 v[5]=VLS(cur, "Firm_Avg_Debt_Rate", 1);					//firm's avg debt rate in the last period
+		 v[6]=VS(cur, "Firm_Stock_Loans");
+		 v[7]=VS(cur, "Firm_Stock_Deposits");
+		 v[8]=VS(cur, "Firm_Capital");
+		 v[9]=VS(cur, "firm_bank");
+		 cur2=SEARCH_CNDS(root, "bank_id", v[9]);
+		 
+		 if ( v[1] <= 0.001 && i > 1 && t>(v[0]+v[3]))				//if firm's market share is near zero
+		 {
+		  //plog("\nFirm Deleted - Small Market Share");			//write on log window
+			if (v[7]>=v[6])											//firm pays current debt with current deposits 
+				{
+				v[11]=v[11]+(v[7]-v[6]);							//deposits distributed to income classes (no need to substract from bank's stock)
+				v[12]=v[12]+v[2];									//available productive capacity
+				v[14]=v[14];										//defaulted loans
+				v[20]=v[20];										//bankruptcy events
+				}
+			else													//if firm can not pay current debt with current deposits
+				{
+				v[11]=v[11];										//deposits distributed to income classes (no need to substract from bank's stock)
+				v[12]=v[12]+v[2];									//available productive capacity
+				v[14]=v[14]+(v[6]-v[7]);							//defaulted loans
+				v[20]=v[20];										//bankruptcy events
+				v[15]=VS(cur2, "bank_defaulted_loans_temporary");
+				WRITES(cur2, "bank_defaulted_loans_temporary", (v[15]+v[6]-v[7]));
+				}
+		  DELETE(cur); 												//delete current firm
+		  v[24]=v[24]+1;											//count number of exited firms
+		  --i;														//subtract 1 from the number of firms counter
+		 }
+		 else														//if firm's current market share is not near zero																																						//if firm's avg debt rate is not higher than 1 (do not delete current firm						
+		 {
+			if(v[4]>1 &&i>1 && t>(v[0]+v[3]))
+			{
+			//plog("\nFirm Deleted - High Debt");					//write on log window
+			if (v[7]>=v[6])											//firm pays current debt with current deposits 
+				{
+				v[11]=v[11]+(v[7]-v[6]);							//deposits distributed to income classes (no need to substract from bank's stock)
+				v[12]=v[12]+v[2];									//available productive capacity
+				v[14]=v[14];										//defaulted loans
+				v[20]=v[20]+1;										//bankruptcy events
+				}
+			else													//if firm can not pay current debt with current deposits
+				{
+				v[11]=v[11];										//deposits distributed to income classes (no need to substract from bank's stock)
+				v[12]=v[12]+v[2];									//available productive capacity
+				v[14]=v[14]+(v[6]-v[7]);							//defaulted loans
+				v[20]=v[20]+1;										//bankruptcy events
+				v[15]=VS(cur2, "bank_defaulted_loans_temporary");
+				WRITES(cur2, "bank_defaulted_loans_temporary", (v[15]+v[6]-v[7]));
+				}
+			DELETE(cur); 											//delete current firm
+			v[24]=v[24]+1;											//count number of exited firms
+			--i;					
+			}
+			else
+			{
+			v[11]=v[11];											//deposits distributed to income classes (no need to substract from bank's stock)
+			v[12]=v[12];											//available productive capacity
+			v[14]=v[14];					  						//defaulted loans
+			v[20]=v[20];											//bankruptcy events
+			v[24]=v[24];
+			}
+		 }
+		WRITES(cur1, "Sector_Productive_Capacity_Exit", v[12]);
+		}
+		v[17]=v[17]+v[11];
+		v[18]=v[18]+v[12];
+		v[19]=v[19]+v[14];
+		v[21]=v[21]+v[20];
+		v[23]=v[23]+v[24];
+	}
 }
 WRITE("Exit_Deposits_Distributed", v[17]);
 WRITE("Exit_Productive_Capacity", v[18]);
@@ -117,6 +128,7 @@ EQUATION("Sector_Entry_Condition")
 Can only be 0 or 1, if all enter conditions are met.
 */
 	v[0]=V("switch_entry");
+	v[90]=V("id_energy_goods_sector");
 	v[1]=V("sector_investment_frequency");
 	v[2]=VL("Sector_Effective_Orders",1);
 	v[3]=VL("Sector_Effective_Orders",2);
@@ -128,7 +140,7 @@ Can only be 0 or 1, if all enter conditions are met.
 	v[10]=V("Sector_Profit_Rate");
 	v[11]=VS(financial, "Financial_Sector_Interest_Rate_Deposits");
   
-    if(v[0]==1 & v[6]>0 && v[7]>0 && v[8]>0 &&v[10]>v[11])
+    if(v[0]==1 & v[6]>0 && v[7]>0 && v[8]>0 &&v[10]>v[11] && v[90]==0)
 		v[9]=1;
     else
 		v[9]=0;
