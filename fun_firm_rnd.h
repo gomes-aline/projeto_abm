@@ -130,7 +130,9 @@ if(V("switch_energy_efficiency_innovation")==1)
 	v[4]=1-exp(-v[3]);                     				//probability of success of the innovation depends on the parameter and the amount of recources available  
 	if(RND<v[4])                                		//draws a random number. if it is lower then innovation probability 
 	{
-		v[5]=norm(0.01,0.005);							//the energy efficiency improvemente will be a draw from a normal distribution
+		v[9]=V("energy_innovation_mean");				//mean of the normal distribution of the energy efficiency improvement
+		v[10]=V("energy_innovation_sd");				//standard deviation of the normal distribution of the energy efficiency improvement
+		v[5]=norm(v[9],v[10]);							//the energy efficiency improvemente will be a draw from a normal distribution
 		v[6]=max(0,v[5]);								//the energy improvement can never be negative
 		v[7]=v[0]-v[6];									//the firm's new energy tech coefficient is lower than the last period
 		v[8]=max(0.01,v[7]);							//the lower limit to energy efficiency is 1% (it can never be lower than 0.01)
