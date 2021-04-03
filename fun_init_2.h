@@ -153,11 +153,12 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
     v[9130]=v[9127]/v[933];								//country real energy exports
 
 	//SECTORAL DEMAND CALCULATION
-	v[140]=v[100]*(1-v[1]-v[2]-v[3])-v[103];																//nominal domestic consumption
-	v[141]=(v[140]/v[13])+v[128]+v[109];																	//real consumption demand
-	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[10]*v[12]/v[11])+v[129]+v[110];						//real capital demand
-	v[143]=(v[141]*v[14]*(1-v[15])+v[142]*v[24]*(1-v[25])+v[130]+v[111])/(1-v[34]*(1-v[35]));		    	//real input demand
-    v[9143]=(v[141]*v[914]*(1-v[915])+v[142]*v[924]*(1-v[925])+v[9130]+v[911])/(1-v[934]*(1-v[935]));		//real energy demand
+	v[9140]=V("class_expenses_consumption_share");
+	v[140]= v[100]*(1-v[1]-v[2]-v[3])-v[103];																							//nominal domestic consumption (consumption goods and energy)
+	v[141]=(v[9140]*v[140]/v[13])+v[128]+v[109];																						//real consumption demand
+	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[10]*v[12]/v[11])+v[129]+v[110];													//real capital demand
+	v[143]=(v[141]*v[14]*(1-v[15])+v[142]*v[24]*(1-v[25])+v[130]+v[111])/(1-v[34]*(1-v[35]));		    								//real input demand
+    v[9143]=(v[141]*v[914]*(1-v[915])+v[142]*v[924]*(1-v[925])+((1-v[9140])*v[140]/v[933])+v[9130]+v[911])/(1-v[934]*(1-v[935]));		//real energy demand
 	WRITES(consumption, "sector_initial_demand", v[141]);
 	WRITES(capital, "sector_initial_demand", v[142]);
 	WRITES(input, "sector_initial_demand", v[143]);
@@ -428,6 +429,7 @@ v[226]+=(v[193]-v[194]);											//total demand loans
 	CYCLE(cur, "CLASSES")
 	{
 		v[240]=VS(cur, "class_propensity_to_spend");
+		v[9240]=VS(cur, "class_propensity_to_energy");
 		v[241]=VS(cur, "class_profit_share");
 		v[242]=VS(cur, "class_wage_share");
 		
@@ -445,12 +447,15 @@ v[226]+=(v[193]-v[194]);											//total demand loans
 			v[244]=v[234]*v[243];												//average direct tax rate
 		
 		v[245]=v[243]-v[244];										//class disposable income
-		v[246]=v[245]*v[240];										//class induced expenses
+		v[246]=v[9140]*v[245]*v[240];								//class induced expenses on consumption goods
+		v[9246]=(1-v[9140])*v[245]*v[9240];							//class induced expenses on energy
 		v[247]=v[235]*v[241];										//class nominal imports
 		v[248]=v[247]/v[246];										//class import share
 		v[249]=v[246]-v[247];										//class induced domestic consumption
-		v[250]=v[245]-v[246];										//class induced savings
+		v[9249]=v[9246];											//class induced energy consumption
+		v[250]=v[245]-v[246]-v[9246];								//class induced savings
 		v[251]+=v[249];												//total induced domestic consumption
+		v[9251]+=v[9249];											//total induced energy consumption
 		v[252]+=v[250];												//total induced savings
 		
 		WRITES(cur, "class_direct_tax", v[234]);//same tax rate 
@@ -463,15 +468,18 @@ v[226]+=(v[193]-v[194]);											//total demand loans
 		for(i=1;i<=v[0]+1;i++)
 			WRITELLS(cur, "Class_Nominal_Disposable_Income", v[245], 0, 1);
 		for(i=1;i<=v[0]+1;i++)
-			WRITELLS(cur, "Class_Real_Disposable_Income", v[245]/v[13], 0, 1);
+			WRITELLS(cur, "Class_Real_Disposable_Income", v[245]/((v[9140]*v[13])+((1-v[9140])*v[933])), 0, 1);
 		for(i=1;i<=v[0]+1;i++)
 			WRITELLS(cur, "Class_Debt_Rate", 0, 0, 1);
 	}
 	
-	v[253]=v[140]-v[251];//total autonomous consumption
+	v[253]=(v[9140]*v[140])-v[251];							//total autonomous consumption goods
+	v[9253]=((1-v[9140])*v[140])-v[9251];					//total autonomous energy consumption
 	CYCLE(cur, "CLASSES")
+	{
 		WRITELLS(cur, "Class_Real_Autonomous_Consumption", v[253]*VS(cur, "class_profit_share")/v[13], 0, 1);
-
+		WRITELLS(cur, "Class_Real_Autonomous_Energy", v[9253]*VS(cur, "class_profit_share")/v[933], 0, 1);
+	}
 v[271]=WHTAVE("sector_initial_productivity", "sector_initial_demand")/SUM("sector_initial_demand");
 v[272]=WHTAVE("sector_desired_degree_capacity_utilization", "sector_initial_demand")/SUM("sector_initial_demand");
 	

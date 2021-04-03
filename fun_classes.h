@@ -20,7 +20,7 @@ if (v[2]==0)														//if it is class adjustment period
 	v[4]=V("class_autonomous_consumption_adjustment");				//autonomous consumption adjustment parameter
 		if(v[3]>0) 													//if quality growth was positive
 			v[5]=v[0]*(1+v[4]*v[3]); 								//increase autonomous consumption by the adjustment parameter
-		if(v[3]==0)													//if quality grwoth was zero
+		if(v[3]==0)													//if quality growth was zero
 			v[5]=v[0];												//use last period autonomous consumption
 		if(v[3]<0)													//if quality growth was negative
 			v[5]=v[0]*(1+v[4]*v[3]);							 	//decrease autonomous consumption by the adjustment parameter
@@ -39,6 +39,29 @@ EQUATION("Class_Imports_Share")
 	v[7]=v[1]*pow((v[3]/(v[4]*v[5])),v[6]);
 	v[8]=max(0,min(v[7],1));
 RESULT(v[8])
+
+
+EQUATION("Class_Real_Autonomous_Energy")
+/*
+Class autonomous energy consumption depends on the average quality growth of the energy sector
+*/
+v[0]=CURRENT;                 										//class autonomous energy consumption in the last period
+v[1]=V("annual_frequency");										    //defines the class adjustment period 
+v[2]= fmod((double) t,v[1]);										//divides time period by the class period and takes the rest
+if (v[2]==0)														//if it is class adjustment period 	
+	{
+	v[3]=LAG_GROWTH(energy, "Sector_Avg_Quality", v[1], 1);
+	v[4]=V("class_autonomous_energy_adjustment");					//autonomous energy consumption adjustment parameter
+		if(v[3]>0) 													//if quality growth was positive
+			v[5]=v[0]*(1+v[4]*v[3]); 								//increase autonomous energy consumption by the adjustment parameter
+		if(v[3]==0)													//if quality growth was zero
+			v[5]=v[0];												//use last period autonomous energy consumption
+		if(v[3]<0)													//if quality growth was negative
+			v[5]=v[0]*(1+v[4]*v[3]);							 	//decrease autonomous energy consumption by the adjustment parameter
+  }
+else																//if it is not class adjustment period
+	v[5]=v[0]; 														//use last period autonomous energy consumption                                                                       		
+RESULT(max(0,v[5]))
 
 
 EQUATION("Class_Real_Desired_Domestic_Consumption")
@@ -64,12 +87,12 @@ RESULT(v[3])
 
 EQUATION("Class_Real_Desired_Energy")
 /*
-Class real domestic energy consumption is based on the amount of consumption goods, domestic and imported. All class's energy demand is provided domestically
-*/
-	v[0]=V("Class_Real_Desired_Domestic_Consumption");              //class desired domestic consumption
-	v[1]=V("Class_Real_Desired_Imported_Consumption");              //class desired external consumption
-	v[2]=V("class_consumption_energy_ratio");						//coefficient that describes energy consumption as a proportion of the consumption of goods	
-	v[3]=v[2]*(v[1]+v[0]);											//class real desired energy demand
+Class real domestic energy consumption. All class's energy demand is provided domestically
+*/	
+	v[0]=V("Class_Avg_Real_Income");
+	v[1]=V("class_propensity_to_energy");          				//class propensity to consume energy on income
+  	v[2]=V("Class_Real_Autonomous_Energy");    					//class autonomous consumption of energy
+	v[3]=v[0]*v[1]+v[2];                            			//class real desired consumption of energy
 RESULT(v[3])
 
 
@@ -322,16 +345,19 @@ Class effective domestic consumption goods demand. There is a priority between d
 	v[0]=V("Class_Maximum_Expenses");
 	v[1]=VS(consumption, "Sector_Avg_Price"); 					 //consumption goods price
 	v[2]=VS(energy, "Sector_Avg_Price"); 						 //energy price
-	v[3]=V("class_consumption_energy_ratio");					 //coefficient that describes energy consumption as a proportion of the consumption of goods		
-	v[4]=v[0]/(v[1]+(v[2]*v[3]));								 //real consumption demand possible considering the energy-consumption relationship
-	v[5]=v[3]*v[4];												 //real energy demand possible
-	v[6]=V("Class_Real_Desired_Domestic_Consumption");           //real desired consumption demand desired
-	v[7]=min(v[4],v[6]);										 //real domestic consumption demand is the minimum between desired and possible
-	v[8]=v[3]*v[7];												 //real energy demand related to domestic goods
-	WRITE("Class_Real_Energy_Demand_Domestic_Goods",v[8]);		
+	v[3]=V("class_expenses_consumption_share");					 //share of expenses on consumption goods
+	v[4]=V("Class_Real_Desired_Domestic_Consumption");           //real consumption demand desired
+	v[5]=V("Class_Real_Desired_Energy");         			 	 //real energy demand desired
+	v[6]=v[0]*v[3];												 //class maximium expense with consumption goods
+	v[7]=v[0]*(1-v[3]);											 //class maximium expense with energy
+	v[8]=v[6]/v[1];												 //real consumption goods demand possible
+	v[9]=v[7]/v[2];												 //real energy demand possible
+	v[10]= min(v[8],v[4]);										 //real domestic consumption demand is the minimum between desired and possible
+	v[11]= min(v[9],v[5]);										 //real energy demand is the minimum between desired and possible
+	WRITE("Class_Real_Energy_Demand",v[11]);		
 RESULT(v[7])
 
-EQUATION_DUMMY("Class_Real_Energy_Demand_Domestic_Goods", "Class_Real_Domestic_Consumption_Demand")
+EQUATION_DUMMY("Class_Real_Energy_Demand", "Class_Real_Domestic_Consumption_Demand")
 
 
 EQUATION("Class_Real_Imported_Consumption_Demand")
@@ -339,33 +365,18 @@ EQUATION("Class_Real_Imported_Consumption_Demand")
 Class effective external domestic consumption, depending on desired level of imports plus the demand not met by the domestic production
 */
 	v[0]=V("Class_Maximum_Expenses");
-	v[1]=VS(consumption, "Sector_Avg_Price"); 					//consumption goods price
-	v[2]=VS(consumption, "Sector_External_Price");				//consumption goods external price
-	v[3]=VS(energy, "Sector_Avg_Price"); 						 //energy price
-	v[4]=VS(external,"Country_Exchange_Rate");
-	v[5]=V("class_consumption_energy_ratio");					 //coefficient that describes energy consumption as a proportion of the consumption of goods	
-	v[6]=V("Class_Real_Domestic_Consumption_Demand");           //real effetive demand for domestic consumption gooods
-	v[7]=V("Class_Real_Energy_Demand_Domestic_Goods");			//real effective energy demand related to domestic goods
-	v[8]=(v[6]*v[1]) + (v[7]*v[3]);									//nominal effective expenses with domestic consumption goods and energy related to the domestic goods
-	v[9]=max(0, (v[0]-v[8]));									//effective amount that can be spended with external consumption goods
-	v[10]=v[9]/((v[2]*v[4])+(v[5]*v[3]));						//effective real demand for imported consumption goods considering the energy-consumption relationship
-	v[11]=V("Class_Real_Desired_Imported_Consumption");
-	v[12]=min(v[10],v[11]);
-	v[13]=v[12]*v[5];											//real effective energy demand related to imported goods
-	WRITE("Class_Real_Energy_Demand_Imported_Goods",v[13]);	
-RESULT(v[12])
+	v[1]=VS(consumption, "Sector_Avg_Price"); 					 //consumption goods price
+	v[2]=VS(consumption, "Sector_External_Price");				 //consumption goods external price
+	v[3]=V("Class_Real_Domestic_Consumption_Demand");            //real effetive demand for domestic consumption gooods
+	v[4]=V("class_expenses_consumption_share");					 //share of expenses on consumption goods
+	v[5]=v[3]*v[1];												 //effective expenses with domestic consumption goods
+	v[6]=max(0, (v[0]*v[4])-v[5]);							     //effective amount that can be spended with external consumption goods
+	v[7]=VS(external,"Country_Exchange_Rate");
+	v[8]=v[6]/(v[2]*v[7]);										 //effective real demand for imported consumption goods
+	v[9]=V("Class_Real_Desired_Imported_Consumption");
+	v[10]=min(v[8],v[9]);
+RESULT(v[10])
 
-EQUATION_DUMMY("Class_Real_Energy_Demand_Imported_Goods", "Class_Real_Imported_Consumption_Demand")
-
-
-EQUATION("Class_Real_Energy_Demand")
-/*
-Class effective energy demand. 
-*/
-v[0]=V("Class_Real_Energy_Demand_Domestic_Goods");
-v[1]=V("Class_Real_Energy_Demand_Imported_Goods");
-v[2]=v[0]+v[1];
-RESULT(v[2])
 
 
 EQUATION("Class_Effective_Real_Domestic_Consumption")
@@ -395,13 +406,10 @@ EQUATION("Class_Effective_Real_Energy")
 /*
 Class effective real domestic consumption, depending on how much the domestic consumption goods sector was able to meet demand.
 */
-	v[0]=VS(energy,"Sector_Demand_Met");                  				  //percentage of the total demand met by the sector
-	v[1]=V("Class_Effective_Real_Domestic_Consumption");                  //percentage of the total demand met by the sector
-	v[2]=V("Class_Effective_Real_Imported_Consumption");				  //real demand 
-	v[3]=V("class_consumption_energy_ratio");							  //coefficient that describes energy consumption as a proportion of the consumption of goods	
-	v[4]=v[3]*(v[1]+v[2]);
-	v[5]=v[0]*v[4];
-RESULT(v[5])
+	v[0]=VS(energy,"Sector_Demand_Met");                    //percentage of the total demand met by the sector
+	v[1]=V("Class_Real_Energy_Demand");				        //real energy demand    
+	v[2]=v[0]*v[1];
+RESULT(v[2])
 
 
 EQUATION("Class_Effective_Expenses")

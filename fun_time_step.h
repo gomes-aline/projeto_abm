@@ -98,6 +98,7 @@ V("Country_Capacity_Utilization");
 V("Class_Avg_Real_Income");
 V("Class_Avg_Nominal_Income");
 V("Class_Real_Autonomous_Consumption");
+V("Class_Real_Autonomous_Energy");
 V("Class_Real_Desired_Domestic_Consumption");
 V("Class_Real_Desired_Imported_Consumption");
 V("Class_Real_Desired_Energy");
@@ -116,8 +117,6 @@ V("Class_Funds");
 V("Class_Maximum_Expenses");
 V("Class_Real_Domestic_Consumption_Demand");
 V("Class_Real_Imported_Consumption_Demand");
-V("Class_Real_Energy_Demand_Domestic_Goods");
-V("Class_Real_Energy_Demand_Imported_Goods");
 V("Class_Real_Energy_Demand");
 V("Country_Domestic_Consumption_Demand"); 
 
