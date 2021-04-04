@@ -45,6 +45,9 @@ EQUATION("Firm_Market_Share")
 /*
 Firm's market share evolves based on the difference between firm's competitiveness index and sector's average competitiveness.
 */
+if(V("id_energy_goods_sector")==1)					//identify the energy sector
+		v[4]=1;										//only one firm 
+else{
 	v[0]=CURRENT;                					//firm's market share in the last period
 	v[1]=V("Sector_Avg_Competitiveness");           //sector average competitiveness
 	v[2]=V("sector_competitiveness_adjustment");	//sector parameter that adjustts market share
@@ -53,6 +56,7 @@ Firm's market share evolves based on the difference between firm's competitivene
 		v[4]=v[0]+v[2]*v[0]*((v[3]/v[1])-1);        //firm's market share will be the last period's inscresed by the adjustment paramter times the ratio between firm's competitiveness and sector average competitiveness
 	else                                            //if the sector average competitiveness is zero
 		v[4]=v[0];                                  //firm's market share will be zero (testar, remover)
+	}
 RESULT(v[4])
 
 
