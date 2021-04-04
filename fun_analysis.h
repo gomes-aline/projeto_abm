@@ -62,6 +62,12 @@ RESULT(VS(country,"Country_Wage_Share"))
 EQUATION("GINI")//Wage Share
 RESULT(VS(country,"Country_Gini_Index"))
 
+EQUATION("ENERGY_NOMINAL")//Energy Nominal Energy Production
+RESULT(VS(country,"Country_Nominal_Energy_Production"))
+
+EQUATION("ENERGY_DEMAND")//Energy Nominal Energy Production
+RESULT(VS(country,"Country_Domestic_Energy_Demand"))
+
 
 /*****REAL STATS*****/
 
@@ -273,6 +279,8 @@ RESULT(VS(input, "Sector_Normalized_HHI"))
 EQUATION("HHI_E")//Inverse HHI of Energy sector
 RESULT(VS(energy, "Sector_Normalized_HHI"))
 
+EQUATION("ENERGY_PRODUCTION")//Energy production
+RESULT(VS(energy, "Sector_Effective_Production"))
 
 /*****COUNTRY GROWTH STATS*****/
 

@@ -5811,20 +5811,14 @@ END_DESCRIPTION
 
 Variable_ENERGY_DEMAND
 (no description available)
-_INIT_
-
 END_DESCRIPTION
 
 Variable_ENERGY_NOMINAL
 (no description available)
-_INIT_
-
 END_DESCRIPTION
 
 Variable_ENERGY_PRODUCTION
 (no description available)
-_INIT_
-
 END_DESCRIPTION
 
 
