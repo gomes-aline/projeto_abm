@@ -12,7 +12,7 @@ This variable defines the ratio between available inputs and inputs demanded for
 		v[4]=v[3]/v[2];                                  	//gives the ratio between necessary imputs and available imputs
 	else                                               		//if required imputs is not a positive value
 		v[4]=1;                                          	//the ratio between necessary imputs and available imputs equals 1
-	v[5]=min(1,v[4]);                                  		//the ratio can never be smaller then 1
+	v[5]=min(1,v[4]);                                  		//the ratio can never be higher then 1
 RESULT(v[5])
 
 
