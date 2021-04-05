@@ -539,7 +539,6 @@ Label Root
 			Var: G_n
 			Var: I
 			Var: U
-			Var: P
 			Var: C_r
 			Var: I_r
 			Var: CON_G
@@ -553,11 +552,8 @@ Label Root
 			Var: PROD_G
 			Var: G_r
 			Var: M_r
-			Var: PROFITS
 			Var: PROFITS_G
-			Var: WAGE
 			Var: WAGE_G
-			Var: EMP
 			Var: INVE_G
 			Var: INVE_r
 			Var: K_G
@@ -625,10 +621,8 @@ Label Root
 			Var: EMP_G
 			Var: BKR
 			Var: BKR_RT
-			Var: CPI
 			Var: CPI_G
 			Var: GDP
-			Var: GDP_r
 			Var: PSH
 			Var: WSH
 			Var: WSH_A
@@ -662,6 +656,12 @@ Label Root
 			Var: U_E
 			Var: W_E
 			Var: ENERGY_PRODUCTION
+			Var: P
+			Var: PROFITS
+			Var: WAGE
+			Var: EMP
+			Var: CPI
+			Var: GDP_r
 
 		}
 
@@ -751,6 +751,7 @@ Label Root
 		Param: switch_energy_efficiency_innovation
 		Param: energy_innovation_mean
 		Param: energy_innovation_sd
+		Param: time_energy_policy
 
 	}
 
@@ -853,6 +854,7 @@ Param: switch_energy_efficiency_imitation 0 n + n n	0
 Param: switch_energy_efficiency_innovation 0 n + n n	0
 Param: energy_innovation_mean 0 n + n n	0.01
 Param: energy_innovation_sd 0 n + n n	0.005
+Param: time_energy_policy 0 n + n n	19
 
 Object: CLASSES C	3
 Param: class_autonomous_consumption_adjustment 0 n + n n	1	1	1
@@ -1343,7 +1345,6 @@ Var: Cri 0 s + n n
 Var: G_n 0 s + n n
 Var: I 0 s + n n
 Var: U 0 s + n n
-Var: P 0 s + n n
 Var: C_r 1 s + n n	0
 Var: I_r 1 s + n n	0
 Var: CON_G 0 s + n n
@@ -1357,11 +1358,8 @@ Var: PROD 1 s + n n	0
 Var: PROD_G 0 s + n n
 Var: G_r 1 s + n n	0
 Var: M_r 1 s + n n	0
-Var: PROFITS 1 s + n n	0
 Var: PROFITS_G 0 s + n n
-Var: WAGE 1 s + n n	0
 Var: WAGE_G 0 s + n n
-Var: EMP 1 s + n n	0
 Var: INVE_G 0 s + n n
 Var: INVE_r 1 s + n n	0
 Var: K_G 0 s + n n
@@ -1429,10 +1427,8 @@ Var: PR 0 s + n n
 Var: EMP_G 0 s + n n
 Var: BKR 0 s + n n
 Var: BKR_RT 0 s + n n
-Var: CPI 0 s + n n
 Var: CPI_G 0 s + n n
 Var: GDP 0 s + n n
-Var: GDP_r 0 s + n n
 Var: PSH 0 s + n n
 Var: WSH 0 s + n n
 Var: WSH_A 0 s + n n
@@ -1466,6 +1462,12 @@ Var: PROD_E 0 s + n n
 Var: U_E 0 s + n n
 Var: W_E 0 s + n n
 Var: ENERGY_PRODUCTION 0 s + n p
+Var: P 0 s + n n
+Var: PROFITS 1 s + n n	0
+Var: WAGE 1 s + n n	0
+Var: EMP 1 s + n n	0
+Var: CPI 0 s + n n
+Var: GDP_r 0 s + n n
 
 SIM_NUM 1
 SEED 1
@@ -2017,6 +2019,12 @@ Parameter_energy_innovation_sd
 (no description available)
 _INIT_
 All 1 instances equal to 0.005.
+END_DESCRIPTION
+
+Parameter_time_energy_policy
+(no description available)
+_INIT_
+All 1 instances equal to 19.
 END_DESCRIPTION
 
 Object_CLASSES
@@ -5039,12 +5047,6 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_P
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
 Variable_C_r
 (no description available)
 _INIT_
@@ -5123,19 +5125,7 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_PROFITS
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
 Variable_PROFITS_G
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_WAGE
 (no description available)
 _INIT_
 
@@ -5145,12 +5135,6 @@ Variable_WAGE_G
 (no description available)
 _INIT_
 
-END_DESCRIPTION
-
-Variable_EMP
-Employment
-_INIT_
-All 1 instances equal to 0.
 END_DESCRIPTION
 
 Variable_INVE_G
@@ -5589,12 +5573,6 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_CPI
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
 Variable_CPI_G
 (no description available)
 _INIT_
@@ -5602,12 +5580,6 @@ _INIT_
 END_DESCRIPTION
 
 Variable_GDP
-(no description available)
-_INIT_
-
-END_DESCRIPTION
-
-Variable_GDP_r
 (no description available)
 _INIT_
 
@@ -5806,6 +5778,42 @@ _INIT_
 END_DESCRIPTION
 
 Variable_ENERGY_PRODUCTION
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_P
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_PROFITS
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_WAGE
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_EMP
+Employment
+_INIT_
+All 1 instances equal to 0.
+END_DESCRIPTION
+
+Variable_CPI
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GDP_r
 (no description available)
 _INIT_
 
