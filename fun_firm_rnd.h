@@ -100,7 +100,7 @@ EQUATION("Firm_Imitation_Energy_Efficiency")
 Imitation process. The sucess depends on the amount of recources alocated to imitation. Firms search for best energy efficiency of the sector, trying to copy if succeded.
 */
 
-v[0]=VL("Firm_Energy_Tech_Coefficient",1);						//firm's energy tech coefficient last period
+v[0]=V("Firm_Energy_Tech_Coefficient");						//firm's energy tech coefficient 
 if(V("switch_energy_efficiency_imitation")==1)
 {
 	v[1]=V("Firm_RND_Expenses");                    			//firm's RND expenses                       
@@ -108,7 +108,7 @@ if(V("switch_energy_efficiency_imitation")==1)
 	v[3]=(v[2]*v[1]);                           				//amount of recources for innovation
 	v[4]=1-exp(-v[3]);                     						//probability of success of the innovation depends on the parameter and the amount of recources available  
 	if(RND<v[4])                                				//draws a random number. if it is lower then innovation probability 
-		v[5]=VL("Sector_Min_Energy_Tech_Coefficient", 1);		//imitation has succeded and the firm can copy the minimum energy tech coefficient of the sector in the last period
+		v[5]=V("Sector_Min_Energy_Tech_Coefficient");			//imitation has succeded and the firm can copy the minimum energy tech coefficient of the sector in the last period
 	else                                      					//if the random number is not lower than imitation probability
 		v[5]=v[0];													//imitation failed and the firm's new energy tech coefficient is the same than the last period
 }
@@ -121,7 +121,7 @@ EQUATION("Firm_Innovation_Energy_Efficiency")
 /*
 Innovation process. The sucess depends on the amount ou recources alocated to innovation. Firms search for improvement in energy efficiency and the result depends on a random distribution with exonegous parameters.
 */
-v[0]=VL("Firm_Energy_Tech_Coefficient",1);				//firm's energy tech coefficient last period
+v[0]=V("Firm_Energy_Tech_Coefficient");					//firm's energy tech coefficient
 if(V("switch_energy_efficiency_innovation")==1)
 {
 	v[1]=V("Firm_RND_Expenses");                    	//firm's RND expenses                       

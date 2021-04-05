@@ -5,14 +5,13 @@ EQUATION("Firm_Energy_Tech_Coefficient")
 Firm's energy tech coefficient is a function of the sector's initial tech coefficient and a parameter of an energy efficiency improvement by innovation/imitation
 */
 	v[0]=V("sector_energy_tech_coefficient");               //sector energy technical coefficient;
-	v[1]=V("Firm_Innovation_Energy_Efficiency");			//Improvement in energy efficiency through innovation process
-	v[2]=V("Firm_Imitation_Energy_Efficiency");				//Improvement in energy efficiency through imitation process
-	v[3]=VL("Firm_Energy_Tech_Coefficient",1);				//firm's energy tech coefficient last period
-	if(v[3]==0)												//if firm's energy tech coefficient last period is zero
-		v[4]=v[0];											//firm's energy tech coefficient is equal to the sector inicial energy tech coefficient
+	v[1]=VL("Firm_Innovation_Energy_Efficiency",1);			//Improvement in energy efficiency through innovation process
+	v[2]=VL("Firm_Imitation_Energy_Efficiency",1);			//Improvement in energy efficiency through imitation process
+	if(t<2)													//if it is time step before 1
+		v[3]=v[0];											//firm's energy tech coefficient is equal to the sector inicial energy tech coefficient
 	else													//if firm's energy tech coefficient last period is not zero
-		v[4]=min(v[1],v[2]);								//firm's energy tech coefficient is the lowest between the result from innovation and from imitation
-RESULT(v[4])
+		v[3]=min(v[1],v[2]);								//firm's energy tech coefficient is the lowest between the result from innovation and from imitation
+RESULT(v[3])
 
 
 EQUATION("Firm_Available_Energy_Ratio")
@@ -57,20 +56,6 @@ EQUATION_DUMMY("Firm_Energy_Tax", "Firm_Energy_Demand")
 
 
 
-/*
-EQUATION("Firm_Energy_Imports")
-/*
-The demand for energy imports is calculated based on the planned production, the energy tech coefficient and the share of imports.
-*//*
-	v[0]=V("Firm_Planned_Production");                     	//firm's planned production for the current period
-	v[1]=V("Firm_Energy_Tech_Coefficient");              	//firm's energy technical coefficient
-	v[2]=V("sector_energy_constrain");      				//the percentage of energy constrained by energy policy or rationing
-	v[4]=v[2]*(1-v[3]);                             		 //amount of energy demanded considering energy constrain 
-	v[5]=max(v[4],0);                               		//firm's demand of energy can never be negative
-	v[6]=V("sector_energy_import_share");					//firm's energy import share
-	v[7]=v[5]*v[6];											//firm's imported demand of energy
-RESULT(v[7])
-*/
 
 
 
