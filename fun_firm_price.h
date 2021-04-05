@@ -56,13 +56,10 @@ Unitary costs of energy. It's given by the domestic energy price plus the extern
 	v[0]=V("sector_energy_import_share");
 	v[1]=VLS(energy,"Sector_Avg_Price",1);                //intermediate sector average price
 	v[2]=VLS(energy,"Sector_External_Price",1);           //sector external price
-	v[3]=V("sector_energy_use_tax");					  //sector energy policy tax over energy use
-	v[4]=V("Country_Exchange_Rate");                      //exchange rate
-	v[5]=V("Firm_Energy_Tech_Coefficient");               //firm energy technical relationship
-	v[6]=v[1]*(1+v[3]);									  //sector domestic energy price with energy use tax
-	v[7]=v[2]*(1+v[3]);      							  //sector imported energy price with energy use tax
-	v[8]=v[6]*v[5]*(1-v[0])+v[7]*v[5]*v[0]*v[4];     	  //energy cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
-RESULT(v[8])
+	v[3]=V("Country_Exchange_Rate");                      //exchange rate
+	v[4]=V("Firm_Energy_Tech_Coefficient");               //firm energy technical relationship
+	v[5]=v[1]*v[4]*(1-v[0])+v[2]*v[4]*v[0]*v[3];     	  //energy cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
+RESULT(v[5])
 
 EQUATION("Firm_Variable_Cost")
 /*
@@ -155,16 +152,21 @@ EQUATION("Firm_Price")
 Firm's effective price is a average between the desired price and the sector average price
 */
 	v[0]=VL("Sector_External_Price",1);
-	v[1]=V("Firm_Desired_Price");                                              //firm's desired price
-	v[2]=V("sector_strategic_price_weight");                                   //strategic weight parameter
-	v[3]=VL("Sector_Avg_Price", 1);                                            //sector average price in the last period
-	v[4]=v[2]*(v[1])+(1-v[2])*((v[3]+v[0])/2);                                 //firm's price is a average between the desired price and the sector average price
-	v[5]=V("Firm_Price_Period");											  
-	if(v[5]==1)																    //if it is price adjustment perod for that firm
-		v[6]=v[4];																//set new price
+	v[1]=V("Firm_Desired_Price");                                              	//firm's desired price
+	v[2]=V("sector_strategic_price_weight");                                   	//strategic weight parameter
+	v[3]=VL("Sector_Avg_Price", 1);                                            	//sector average price in the last period
+	v[4]=V("sector_energy_use_tax");											//sector energy policy tax over energy use
+	v[5]=(v[2]*(v[1])+(1-v[2])*((v[3]+v[0])/2)); 								//firm's price is a average between the desired price and the sector average price
+	if(V("id_energy_goods_sector")==1)											//if it is the energy sector
+		v[6]=(1+v[4])*v[5];														//energy tax over firm's price											
+	else																		//if it is not the energy sector
+		v[6]=v[5];										 						//no tax					
+	v[7]=V("Firm_Price_Period");											  	
+	if(v[7]==1)																    //if it is price adjustment perod for that firm
+		v[8]=v[6];																//set new price
 	else																		//if it is not price adjustment period
-		v[6]=CURRENT;															//use current price
-RESULT(v[6])
+		v[8]=CURRENT;															//use current price
+RESULT(v[8])
 
 
 EQUATION("Firm_Effective_Markup")

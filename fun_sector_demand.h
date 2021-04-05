@@ -27,8 +27,13 @@ User can also define a external price shock:
 			v[9]=v[5]*(1+v[8]);
 		else
 			v[9]=v[5];
-	v[10]=v[0]*(1+v[9]);	
-RESULT(v[10])
+	v[10]=v[0]*(1+v[9]);
+	v[11]=V("sector_energy_use_tax");
+	if(V("id_energy_goods_sector")==1)
+		v[12]=(1+v[11])*v[10];
+	else
+		v[12]=v[10];	
+RESULT(v[12])
 
 
 EQUATION("Sector_Real_Exports")
