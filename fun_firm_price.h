@@ -156,12 +156,14 @@ Firm's effective price is a average between the desired price and the sector ave
 	v[2]=V("sector_strategic_price_weight");                                   	//strategic weight parameter
 	v[3]=VL("Sector_Avg_Price", 1);                                            	//sector average price in the last period
 	v[4]=V("sector_energy_use_tax");											//sector energy policy tax over energy use
-	v[5]=V("time_energy_policy");
-	v[6]=(v[2]*(v[1])+(1-v[2])*((v[3]+v[0]*(1-v[4]))/2)); 						//firm's price is a average between the desired price and the sector average price
-	if(V("id_energy_goods_sector")==1 && t>v[5])								//if it is the energy sector
-		v[7]=(1+v[4])*v[6];														//energy tax over firm's price											
+	v[5]=V("time_energy_policy");												//time step when the energy policy begins
+	if(V("id_energy_goods_sector")==1)											//if it is the energy sector
+		if(t>=v[5])																//if time step is equal or higher than the time step when the energy policy begins
+			v[7]=(1+v[4])*v[1];													//energy price is the firm's desired price and a tax over energy use
+		else																	//if time step is lower than the time step when the energy policy begins
+			v[7]=v[1];															//energy price is the firm's desired price
 	else																		//if it is not the energy sector
-		v[7]=v[6];										 						//no tax					
+		v[7]=(v[2]*(v[1])+(1-v[2])*((v[3]+v[0])/2)); ;							//firm's price is a average between the desired price and the sector average price					
 	v[8]=V("Firm_Price_Period");											  	
 	if(v[8]==1)																    //if it is price adjustment perod for that firm
 		v[9]=v[7];																//set new price

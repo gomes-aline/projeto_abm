@@ -24,9 +24,9 @@ OBS: This is different than the Available Input Ratio, which is related to the t
 	v[1]=V("Firm_Energy_Tech_Coefficient");	
 	v[2]=v[0]*v[1];                    			    		//total amount of energy to required to fulfil planned production
 	v[3]=V("sector_energy_constrain");      				//the percentage of energy constrained by energy policy or rationing
-	v[10]=V("time_energy_policy");
+	v[10]=V("time_energy_policy");							//time step when the energy policy begins
 	
-	if(t>v[10])												//if the time step is higher than the time step when the energy policy starts
+	if(t>=v[10])											//if time step is equal or higher than the time step when the energy policy begins
 		v[4]=v[2]*(1-v[3]);  						    	//amount of energy demanded considering energy constrain 
 	else
 		v[4]=v[2];											//no energy constrain befone the energy policy time step
@@ -44,23 +44,19 @@ EQUATION("Firm_Energy_Demand")
 /*
 The demand for energy goods is calculated based on the planned production, the energy tech coefficient and the share of imports.
 */
-	v[0]=V("Firm_Planned_Production");                     	//firm's planned production for the current period
+	v[0]=V("Firm_Effective_Production");                    //firm's effective production (already considering energy constrain)
 	v[1]=V("Firm_Energy_Tech_Coefficient");              	//firm's energy technical coefficient
-	v[2]=V("sector_energy_constrain");      				//the percentage of energy constrained by energy policy or rationing
-	v[10]=V("time_energy_policy");
-	if(t>v[10])
-		v[4]=v[0]*v[1]*(1-v[2]);                           	//the amount of energy demanded considering energy constrain 
-	else
-		v[4]=v[0]*v[1];
+	v[4]=v[0]*v[1];											//no energy constrain befone the energy policy time step
 	v[5]=max(v[4],0);                               		//firm's demand of energy can never be negative
 	v[6]=V("sector_energy_import_share");					//firm's energy import share
 	v[7]=v[5]*(1-v[6]);										//firm's domestic demand of energy
 	v[8]=v[5]*v[6];											//firm's imported demand of energy			
 	v[9]=V("sector_energy_use_tax");						//sector's energy policy tax over energy use
-	if(t>v[10])	
-		v[11]=(v[7]+v[8])*v[9];								//firm's energy use tax	
-	else
-		v[11]=0;
+	v[10]=V("time_energy_policy");							//time step when the energy policy begins
+	if(t>=v[10])											//if time step is equal or higher than the time step when the energy policy begins
+		v[11]= v[7]*v[9];									//Firm's Energy Tax is equal the tax multiplied by the amount of energy demanded
+	else													//if time step is lower than the time step when the energy policy begins
+		v[11]=0;											//Firm's Energy Tax is null	
 	WRITE("Firm_Energy_Imports",v[8]);
 	WRITE("Firm_Energy_Tax",v[11]);
 RESULT(v[7])
