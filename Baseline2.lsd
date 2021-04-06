@@ -752,6 +752,7 @@ Label Root
 		Param: energy_innovation_mean
 		Param: energy_innovation_sd
 		Param: time_energy_policy
+		Param: energy_sector_markup_rnd
 
 	}
 
@@ -855,6 +856,7 @@ Param: switch_energy_efficiency_innovation 0 n + n n	1
 Param: energy_innovation_mean 0 n + n n	0.01
 Param: energy_innovation_sd 0 n + n n	0.005
 Param: time_energy_policy 0 n + n n	20
+Param: energy_sector_markup_rnd 0 n + n n	1.2
 
 Object: CLASSES C	3
 Param: class_autonomous_consumption_adjustment 0 n + n n	1	1	1
@@ -1119,10 +1121,10 @@ Param: sector_external_price_shock_duration 0 n + n n	0	0	0	0
 Param: sector_external_price_shock_size 0 n + n n	0	0	0	0
 Param: sector_financial_cost_passtrough 0 n + n n	1	1	1	1
 Param: sector_indirect_tax_rate 0 n + n n	0	0	0	0
-Param: sector_initial_debt_rate 0 n + n n	0	0	0	0
+Param: sector_initial_debt_rate 0 n + n n	0.05	0.05	0.05	0.05
 Param: sector_initial_demand 0 n + n n	0	0	0	0
 Param: sector_initial_depreciation_scale 0 n + n n	1	1	1	1
-Param: sector_initial_exports_share 0 n + n n	0.2	0.6	0.2	0.1
+Param: sector_initial_exports_share 0 n + n n	0.2	0.6	0.2	0.05
 Param: sector_initial_external_price 0 n + n n	1	2	1	1
 Param: sector_initial_liquidity_preference 0 n + n n	0	0	0	0
 Param: sector_initial_price 0 n + n n	1	2	1	1
@@ -2025,6 +2027,12 @@ Parameter_time_energy_policy
 (no description available)
 _INIT_
 All 1 instances equal to 19.
+END_DESCRIPTION
+
+Parameter_energy_sector_markup_rnd
+(no description available)
+_INIT_
+All 1 instances equal to 1.2.
 END_DESCRIPTION
 
 Object_CLASSES

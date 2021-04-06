@@ -112,7 +112,7 @@ If firm's market share increased but effective avg market share is lower than de
 Energy sector's only firm has desired markup of 1 at all times.
 */
 	if(V("id_energy_goods_sector")==1)								//identify the energy sector
-		v[7]=1;
+		v[7]=V("energy_sector_markup_rnd");							//energy firm's markup is fixed and defined as value to allow RnD investment
 	else
 	{
 		v[0]=CURRENT;          										//current desired markup                                   						
