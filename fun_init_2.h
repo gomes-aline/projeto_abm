@@ -154,14 +154,14 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 
 	//SECTORAL DEMAND CALCULATION
 	v[140]= v[100]*(1-v[1]-v[2]-v[3])-v[103];																							//nominal domestic consumption (consumption goods and energy)
-	v[9140]=V("class_expenses_consumption_share");																						//share of expenses classes alocate on consumption goods
+	v[9140]=0.85;																						//share of expenses classes alocate on consumption goods
 	v[141]=(v[9140]*v[140]/v[13])+v[128]+v[109];																						//real consumption demand
 	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[930]*v[932]/v[931])+(v[10]*v[12]/v[11])+v[129]+v[110];							//real capital demand
 	v[91421]=((v[141]*v[14]*(1-v[15]))+(v[142]*v[24]*(1-v[25]))+v[130]+v[111])/(1-v[34]*(1-v[35]));										//partial real input demand (without demand from energy sector)
 	v[91422]=(((1-v[9140])*v[140]/v[933])+(v[141]*v[914]*(1-v[915])+(v[142]*v[924]*(1-v[925]))+v[9130]+v[911]))/(1-v[934]*(1-v[935]));	//partial real energy demand (without demand from intermediate sector)
 	v[91423]= v[91421]+(v[91422]*v[9341]*(1-v[9351])/(1-(v[34]*(1-v[35]))));															//numerator for real input demand formula below
 	v[143]=	v[91423]/(1-(v[9341]*(1-v[9351])/(1-(v[34]*(1-v[35]))))*(v[934]*(1-v[935])/(1-(v[9342]*(1-v[9352])))));						//real input demand
-    v[9143]= v[91422]+(v[934]*(1-v[935])/(1-(v[9342]*(1-v[9352]))));																		//real energy demand
+    v[9143]= v[91422]+ v[143]*(v[934]*(1-v[935])/(1-(v[9342]*(1-v[9352]))));																		//real energy demand
 	WRITES(consumption, "sector_initial_demand", v[141]);
 	WRITES(capital, "sector_initial_demand", v[142]);
 	WRITES(input, "sector_initial_demand", v[143]);
