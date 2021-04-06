@@ -96,7 +96,6 @@ Must be called by the sectors.
 	v[3]=V("Government_Effective_Energy");
 	v[5]=v[1]!=0? v[3]/v[1] : 0;
 	v[6]=v[2]+v[0]+v[5];
-	v[6]=v[2];
 RESULT(v[6])
 
 
