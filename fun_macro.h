@@ -568,6 +568,15 @@ Sum up nominal value of autonomous consumption
 	v[2]=v[0]*v[1];
 RESULT(v[2])
 
+EQUATION("Country_Autonomous_Energy")
+/*
+Sum up nominal value of autonomous energy consumption
+*/
+	v[0]=SUM("Class_Real_Autonomous_Energy");
+	v[1]=VS(energy, "Sector_Avg_Price");
+	v[2]=v[0]*v[1];
+RESULT(v[2])
+
 
 EQUATION("Country_Debt_Rate_Class")
 /*
@@ -594,8 +603,6 @@ EQUATION("Country_Gini_Index")
 	v[13]=v[3]*(v[6]+2*v[9]);
 	v[0]=1-(v[11]+v[12]+v[13]);
 RESULT(v[0])
-
-
 
 
 
