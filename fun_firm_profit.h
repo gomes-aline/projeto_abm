@@ -9,9 +9,8 @@ Firm's net revenue, discounting taxes and R&D expenses.
 */
 	v[0]=V("Firm_Revenue");
 	v[1]=V("sector_indirect_tax_rate");
-	v[4]=V("Firm_Energy_Tax");
 	v[2]=v[0]*v[1];
-	v[3]=v[0]-v[2]-v[4];
+	v[3]=v[0]-v[2];
 	WRITE("Firm_Indirect_Tax", v[2]);
 RESULT(v[3])
 

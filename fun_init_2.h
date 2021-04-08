@@ -154,7 +154,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 
 	//SECTORAL DEMAND CALCULATION
 	v[140]= v[100]*(1-v[1]-v[2]-v[3])-v[103];																							//nominal domestic consumption (consumption goods and energy)
-	v[9140]=0.85;																						//share of expenses classes alocate on consumption goods
+	v[9140]=0.9231;																														//average share of expenses classes alocate on consumption goods
 	v[141]=(v[9140]*v[140]/v[13])+v[128]+v[109];																						//real consumption demand
 	v[142]=(v[20]*v[22]/v[21])+(v[30]*v[32]/v[31])+(v[930]*v[932]/v[931])+(v[10]*v[12]/v[11])+v[129]+v[110];							//real capital demand
 	v[91421]=((v[141]*v[14]*(1-v[15]))+(v[142]*v[24]*(1-v[25]))+v[130]+v[111])/(1-v[34]*(1-v[35]));										//partial real input demand (without demand from energy sector)

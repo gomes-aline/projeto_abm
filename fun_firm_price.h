@@ -54,12 +54,19 @@ EQUATION("Firm_Energy_Cost")
 Unitary costs of energy. It's given by the domestic energy price plus the external energy price, weighted by the proportion of the demand met by domestic and external sectors
 */
 	v[0]=V("sector_energy_import_share");
-	v[1]=VLS(energy,"Sector_Avg_Price",1);                //intermediate sector average price
-	v[2]=VLS(energy,"Sector_External_Price",1);           //sector external price
-	v[3]=V("Country_Exchange_Rate");                      //exchange rate
-	v[4]=V("Firm_Energy_Tech_Coefficient");               //firm energy technical relationship
-	v[5]=v[1]*v[4]*(1-v[0])+v[2]*v[4]*v[0]*v[3];     	  //energy cost will be the amount demanded domesticaly multiplied by domestic price plus the amount demanded externally miltiplied by the external price
-RESULT(v[5])
+	v[1]=VLS(energy,"Sector_Avg_Price",1);              	  //intermediate sector average price
+	v[2]=VLS(energy,"Sector_External_Price",1);         	  //sector external price
+	v[3]=V("Country_Exchange_Rate");                   	 	  //exchange rate
+	v[4]=V("Firm_Energy_Tech_Coefficient");             	  //firm energy technical relationship
+	v[5]=V("time_energy_policy");						 	  //time step when the energy policy begins
+	if(t>=v[5])									 	    	  //if time step is equal or higher than the time step when the energy policy begins
+		v[6]=V("sector_energy_use_tax");				 	  //sector energy policy tax over energy use in the industry
+	else	
+		v[6]=0;										
+	v[7]=(v[1]*v[4]*(1-v[0]))*(1+v[6]); 					  //cost of energy demanded domesticaly
+	v[8]=(v[2]*v[4]*v[0]*v[3])*(1+v[6]);					  //cost of energy imported
+	v[9]=v[7]+v[8];										 	  //total cost of energy
+RESULT(v[9])
 
 EQUATION("Firm_Variable_Cost")
 /*
@@ -155,13 +162,8 @@ Firm's effective price is a average between the desired price and the sector ave
 	v[1]=V("Firm_Desired_Price");                                              	//firm's desired price
 	v[2]=V("sector_strategic_price_weight");                                   	//strategic weight parameter
 	v[3]=VL("Sector_Avg_Price", 1);                                            	//sector average price in the last period
-	v[4]=V("sector_energy_use_tax");											//sector energy policy tax over energy use
-	v[5]=V("time_energy_policy");												//time step when the energy policy begins
 	if(V("id_energy_goods_sector")==1)											//if it is the energy sector
-		if(t>=v[5])																//if time step is equal or higher than the time step when the energy policy begins
-			v[7]=(1+v[4])*v[1];													//energy price is the firm's desired price and a tax over energy use
-		else																	//if time step is lower than the time step when the energy policy begins
-			v[7]=v[1];															//energy price is the firm's desired price
+		v[7]=v[1];																//energy price is the firm's desired price
 	else																		//if it is not the energy sector
 		v[7]=(v[2]*(v[1])+(1-v[2])*((v[3]+v[0])/2)); ;							//firm's price is a average between the desired price and the sector average price					
 	v[8]=V("Firm_Price_Period");											  	
