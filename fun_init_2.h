@@ -115,7 +115,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[110]=v[107]/v[23];								//government real investment
 	v[111]=v[108]/v[33];								//government real inputs
 	v[9111]=v[9108]/v[933];								//government real energy
-	v[112]=v[104]-v[106]-v[107]-v[108];					//government wages
+	v[112]=v[104]-v[106]-v[107]-v[108]-v[9108];			//government wages
 	v[113]=v[103]/v[100];								//government surplus rate target
 	
 	//WRITTING GOVERNMENT LAGGED VALUES
@@ -143,7 +143,7 @@ v[70]=VS(centralbank, "cb_target_annual_inflation");
 	v[122]=v[43]*v[100];								//international reserves
 	v[123]=v[100]*v[3];									//country nominal exports
 	v[124]=v[123]+v[121];								//country nominal imports
-	v[125]=v[123]*v[16];								//country nominal consuption exports
+	v[125]=v[123]*v[16];								//country nominal consumption exports
 	v[126]=v[123]*v[26];								//country nominal capital exports
 	v[127]=v[123]*v[36];								//country nominal input exports
     v[9127]=v[123]*v[936];								//country nominal energy exports

@@ -850,11 +850,11 @@ Var: Exit_Defaulted_Loans 0 s + n n
 Var: Exit_Deposits_Distributed 0 s + n n
 Var: Exit_Productive_Capacity 0 n + n n
 Var: Loans_Distribution_Firms 0 n + n n
-Param: switch_energy_efficiency_imitation 0 n + n n	1
-Param: switch_energy_efficiency_innovation 0 n + n n	1
+Param: switch_energy_efficiency_imitation 0 n + n n	0
+Param: switch_energy_efficiency_innovation 0 n + n n	0
 Param: energy_innovation_mean 0 n + n n	0.01
 Param: energy_innovation_sd 0 n + n n	0.005
-Param: time_energy_policy 0 n + n n	20
+Param: time_energy_policy 0 n + n n	100
 Var: Country_Domestic_Energy_Demand 0 s + n n
 Param: energy_sector_markup_rnd 0 n + n n	1.2
 Var: Country_Nominal_Energy_Production 0 s + n n
@@ -913,7 +913,7 @@ Var: Class_Wealth_Share 0 s + n n
 Var: Class_Effective_Real_Energy 0 s + n n
 Var: Class_Real_Desired_Energy 0 s + n n
 Var: Class_Real_Energy_Demand 0 s + n n
-Param: class_autonomous_energy_adjustment 0 n + n n	0.3	0.3	0.3
+Param: class_autonomous_energy_adjustment 0 n + n n	1	1	1
 Param: class_expenses_consumption_share 0 n + n n	0.96	0.95	0.92
 Param: class_propensity_to_energy 0 n + n n	0.03	0.05	0.08
 Var: Class_Real_Autonomous_Energy 1 s + n n	0	0	0
@@ -998,38 +998,38 @@ Var: Financial_Sector_Total_Stock_Loans_Growth 1 s + n n	0
 Var: Financial_Sector_Turbulence 0 s + n n
 Var: Financial_Sector_Interest_Rate_Deposits 1 s + n n	0
 
-Object: BANKS C	1
-Param: bank_defaulted_loans_temporary 0 n + n n	0
-Param: bank_id 0 n + n n	1
-Var: Bank_Accumulated_Defaulted_Loans 1 n + n n	0
-Var: Bank_Accumulated_Profits 1 n + n n	0
-Var: Bank_Competitiveness 1 n + n n	0
+Object: BANKS C	10
+Param: bank_defaulted_loans_temporary 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: bank_id 0 n + n n	1	1	1	1	1	1	1	1	1	1
+Var: Bank_Accumulated_Defaulted_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Accumulated_Profits 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Competitiveness 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Debt_Payment 0 n + n n
-Var: Bank_Default_Share 1 n + n n	0
-Var: Bank_Defaulted_Loans 1 n + n n	0
-Var: Bank_Demand_Loans 1 n + n n	0
-Var: Bank_Demand_Met 1 n + n n	0
-Var: Bank_Desired_Interest_Rate_Long_Term 1 n + n n	0
+Var: Bank_Default_Share 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Defaulted_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Demand_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Demand_Met 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Desired_Interest_Rate_Long_Term 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Desired_Interest_Rate_Short_Term 0 n + n n
-Var: Bank_Desired_Long_Term_Spread 1 n + n n	0
-Var: Bank_Desired_Short_Term_Spread 1 n + n n	0
+Var: Bank_Desired_Long_Term_Spread 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Desired_Short_Term_Spread 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Distributed_Profits 0 n + n n
 Var: Bank_Effective_Loans 0 n + n n
 Var: Bank_Interest_Payment 0 n + n n
-Var: Bank_Interest_Rate_Long_Term 1 n + n n	0
-Var: Bank_Interest_Rate_Short_Term 1 n + n n	0
+Var: Bank_Interest_Rate_Long_Term 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Interest_Rate_Short_Term 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Interest_Receivment 0 n + n n
-Var: Bank_Leverage 1 n + n n	0
-Var: Bank_Market_Share 1 n + n n	0
+Var: Bank_Leverage 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Market_Share 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Max_Total_Loans 0 n + n n
 Var: Bank_Number_Clients 0 n + n n
 Var: Bank_Profits 0 n + n n
 Var: Bank_Rescue 0 n + n n
-Var: Bank_Short_Term_Rate 1 n + n n	0
+Var: Bank_Short_Term_Rate 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Stock_Deposits 0 n + n n
-Var: Bank_Stock_Loans_Long_Term 1 n + n n	0
+Var: Bank_Stock_Loans_Long_Term 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Stock_Loans_Short_Term 0 n + n n
-Var: Bank_Total_Stock_Loans 1 n + n n	0
+Var: Bank_Total_Stock_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Effective_Profit_Rate 0 n + n n
 Var: Bank_Retained_Profits 0 n + n n
 Var: Bank_Effective_Capital_Ratio 0 n + n n
@@ -1118,7 +1118,7 @@ Param: sector_exports_elasticity_price 0 n + n n	1	1	1	1
 Param: sector_external_price_competitiveness 0 n + n n	0	0	0	0
 Param: sector_external_price_growth 0 n + n n	0.005	0.005	0.005	0.005
 Param: sector_external_price_sd 0 n + n n	0.01	0.01	0.01	0.01
-Param: sector_external_price_shock_begin 0 n + n n	600	600	600	600
+Param: sector_external_price_shock_begin 0 n + n n	400	400	400	400
 Param: sector_external_price_shock_duration 0 n + n n	0	0	0	0
 Param: sector_external_price_shock_size 0 n + n n	0	0	0	0
 Param: sector_financial_cost_passtrough 0 n + n n	1	1	1	1
@@ -1126,7 +1126,7 @@ Param: sector_indirect_tax_rate 0 n + n n	0	0	0	0
 Param: sector_initial_debt_rate 0 n + n n	0.1	0.1	0.1	0.1
 Param: sector_initial_demand 0 n + n n	0	0	0	0
 Param: sector_initial_depreciation_scale 0 n + n n	1	1	1	1
-Param: sector_initial_exports_share 0 n + n n	0.2	0.6	0.2	0.05
+Param: sector_initial_exports_share 0 n + n n	0.2	0.6	0.2	0.1
 Param: sector_initial_external_price 0 n + n n	1	2	1	1
 Param: sector_initial_liquidity_preference 0 n + n n	0	0	0	0
 Param: sector_initial_price 0 n + n n	1	2	1	1
@@ -1135,14 +1135,14 @@ Param: sector_initial_profit_rate 0 n + n n	0.3	0.6	0.3	0.3
 Param: sector_initial_quality 0 n + n n	1	1	1	1
 Param: sector_innovation_proportion 0 n + n n	0.5	0.5	0.5	0.5
 Param: sector_input_import_share 0 n + n n	0.05	0.05	0.05	0.05
-Param: sector_input_tech_coefficient 0 n + n n	0.4	0.4	0.3	0.4
+Param: sector_input_tech_coefficient 0 n + n n	0.4	0.4	0.4	0.4
 Param: sector_investment_frequency 0 n + n n	4	4	4	4
 Param: sector_learning_adjustment 0 n + n n	0	0	0	0
 Param: sector_liquidity_preference_adjustment 0 n + n n	0	0	0	0
 Param: sector_markup_adjustment 0 n + n n	1	1	1	0
 Param: sector_number_object_firms 0 n + n n	20	8	12	1
-Param: sector_passthrough_inflation 0 s + n n	0.8	0.8	0.8	0.8
-Param: sector_passthrough_productivity 0 s + n n	0.8	0.8	0.8	0.8
+Param: sector_passthrough_inflation 0 s + n n	0.8	0.8	0.8	1
+Param: sector_passthrough_productivity 0 s + n n	0.8	0.8	0.8	1
 Param: sector_payback_period 0 n + n n	30	30	30	30
 Param: sector_price_frequency 0 n + n n	1	1	1	1
 Param: sector_profits_distribution_rate 0 n + n n	0.8	0.8	0.8	0.8
@@ -1290,7 +1290,7 @@ Var: Firm_Modernization_Rate 0 n + n n
 Var: Firm_Net_Profits 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Net_Revenue 0 n + n n
 Var: Firm_Planned_Production 0 n + n n
-Var: Firm_Price 1 n + n n	1	1	1	1
+Var: Firm_Price 1 n + n n	1	1	1	0.6
 Var: Firm_Price_Period 0 n + n n
 Var: Firm_Productive_Capacity 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Productive_Capacity_Depreciation 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -1475,7 +1475,7 @@ Var: GDP_r 0 s + n n
 
 SIM_NUM 1
 SEED 1
-MAX_STEP 200
+MAX_STEP 1
 EQUATION fun_micro_macro_v.3.6.cpp
 MODELREPORT report_Sim1.html
 
