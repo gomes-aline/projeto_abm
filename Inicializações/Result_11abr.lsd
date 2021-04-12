@@ -748,7 +748,7 @@ Label Root
 		Param: switch_energy_efficiency_innovation
 		Param: energy_innovation_mean
 		Param: energy_innovation_sd
-		Param: begin_energy_policy
+		Param: time_energy_policy
 		Var: Country_Domestic_Energy_Demand
 		Param: energy_sector_markup_rnd
 		Var: Country_Nominal_Energy_Production
@@ -756,7 +756,7 @@ Label Root
 
 	}
 
-	Var: Initialization_2
+	Param: Initialization_2
 	Var: Time_Step
 
 }
@@ -765,7 +765,7 @@ Label Root
 DATA
 
 Object: Root C	1
-Var: Initialization_2 0 n + n n
+Param: Initialization_2 0 n + n n	0
 Var: Time_Step 0 n + n n
 
 Object: COUNTRY C	1
@@ -853,7 +853,7 @@ Param: switch_energy_efficiency_imitation 0 n + n n	0
 Param: switch_energy_efficiency_innovation 0 n + n n	0
 Param: energy_innovation_mean 0 n + n n	0.01
 Param: energy_innovation_sd 0 n + n n	0.005
-Param: begin_energy_policy 0 n + n n	40
+Param: time_energy_policy 0 n + n n	600
 Var: Country_Domestic_Energy_Demand 0 s + n n
 Param: energy_sector_markup_rnd 0 n + n n	1.2
 Var: Country_Nominal_Energy_Production 0 s + n n
@@ -1472,8 +1472,8 @@ Var: CPI 0 s + n n
 Var: GDP_r 0 s + n n
 
 SIM_NUM 1
-SEED 1
-MAX_STEP 100
+SEED 2
+MAX_STEP 1
 EQUATION fun_micro_macro_v.3.6.cpp
 MODELREPORT report_Sim1.html
 
@@ -2010,7 +2010,7 @@ _INIT_
 All 1 instances equal to 0.005.
 END_DESCRIPTION
 
-Parameter_begin_energy_policy
+Parameter_time_energy_policy
 (no description available)
 _INIT_
 All 1 instances equal to 19.

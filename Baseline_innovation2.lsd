@@ -849,10 +849,10 @@ Var: Exit_Defaulted_Loans 0 s + n n
 Var: Exit_Deposits_Distributed 0 s + n n
 Var: Exit_Productive_Capacity 0 n + n n
 Var: Loans_Distribution_Firms 0 n + n n
-Param: switch_energy_efficiency_imitation 0 n + n n	0
-Param: switch_energy_efficiency_innovation 0 n + n n	0
-Param: energy_innovation_mean 0 n + n n	0.01
-Param: energy_innovation_sd 0 n + n n	0.005
+Param: switch_energy_efficiency_imitation 0 n + n n	1
+Param: switch_energy_efficiency_innovation 0 n + n n	1
+Param: energy_innovation_mean 0 n + n n	0.005
+Param: energy_innovation_sd 0 n + n n	0.001
 Param: begin_energy_policy 0 n + n n	40
 Var: Country_Domestic_Energy_Demand 0 s + n n
 Param: energy_sector_markup_rnd 0 n + n n	1.2

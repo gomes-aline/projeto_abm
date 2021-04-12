@@ -24,7 +24,7 @@ OBS: This is different than the Available Input Ratio, which is related to the t
 	v[1]=V("Firm_Energy_Tech_Coefficient");	
 	v[2]=v[0]*v[1];                    			    		//total amount of energy to required to fulfil planned production
 	v[3]=V("sector_energy_constrain");      				//the percentage of energy constrained by energy policy or rationing
-	v[10]=V("time_energy_policy");							//time step when the energy policy begins
+	v[10]=V("begin_energy_policy");							//time step when the energy policy begins
 	
 	if(t>=v[10])											//if time step is equal or higher than the time step when the energy policy begins
 		v[4]=v[2]*(1-v[3]);  						    	//amount of energy demanded considering energy constrain 
@@ -52,7 +52,7 @@ The demand for energy goods is calculated based on the planned production, the e
 	v[7]=v[5]*(1-v[6]);										//firm's domestic demand of energy
 	v[8]=v[5]*v[6];											//firm's imported demand of energy			
 	v[9]=V("sector_energy_use_tax");						//sector's energy policy tax over energy use
-	v[10]=V("time_energy_policy");							//time step when the energy policy begins
+	v[10]=V("begin_energy_policy");							//time step when the energy policy begins
 	if(t>=v[10])											//if time step is equal or higher than the time step when the energy policy begins
 		v[11]= v[7]*v[9];									//Firm's Energy Tax is equal the tax multiplied by the amount of energy demanded
 	else													//if time step is lower than the time step when the energy policy begins

@@ -58,7 +58,7 @@ Unitary costs of energy. It's given by the domestic energy price plus the extern
 	v[2]=VLS(energy,"Sector_External_Price",1);         	  //sector external price
 	v[3]=V("Country_Exchange_Rate");                   	 	  //exchange rate
 	v[4]=V("Firm_Energy_Tech_Coefficient");             	  //firm energy technical relationship
-	v[5]=V("time_energy_policy");						 	  //time step when the energy policy begins
+	v[5]=V("begin_energy_policy");						 	  //time step when the energy policy begins
 	if(t>=v[5])									 	    	  //if time step is equal or higher than the time step when the energy policy begins
 		v[6]=V("sector_energy_use_tax");				 	  //sector energy policy tax over energy use in the industry
 	else	
