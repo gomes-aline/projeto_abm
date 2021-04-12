@@ -73,7 +73,7 @@ Class real domestic conumption is based on average past real disposable income f
   	v[2]=V("Class_Real_Autonomous_Consumption");    			//class autonomous consumption
 	v[3]=V("Class_Imports_Share");
 	v[5]=v[0]*v[1]*(1-v[3])+v[2];                            	//class real desired consumption
-RESULT(v[6])
+RESULT(v[5])
 
 
 EQUATION("Class_Real_Desired_Imported_Consumption")
@@ -355,7 +355,7 @@ Class effective domestic consumption goods demand. There is a priority between d
 	v[10]= min(v[8],v[4]);										 //real domestic consumption demand is the minimum between desired and possible
 	v[11]= min(v[9],v[5]);										 //real energy demand is the minimum between desired and possible
 	WRITE("Class_Real_Energy_Demand",v[11]);		
-RESULT(v[7])
+RESULT(v[10])
 
 EQUATION_DUMMY("Class_Real_Energy_Demand", "Class_Real_Domestic_Consumption_Demand")
 

@@ -66,13 +66,13 @@ Label Root
 			Var: Class_Stock_Loans
 			Var: Class_Taxation
 			Var: Class_Wealth_Share
-			Var: Class_Effective_Real_Energy
-			Var: Class_Real_Desired_Energy
-			Var: Class_Real_Energy_Demand
 			Param: class_autonomous_energy_adjustment
 			Param: class_expenses_consumption_share
 			Param: class_propensity_to_energy
 			Var: Class_Real_Autonomous_Energy
+			Var: Class_Real_Desired_Energy
+			Var: Class_Real_Energy_Demand
+			Var: Class_Effective_Real_Energy
 
 		}
 
@@ -661,6 +661,7 @@ Label Root
 			Var: EMP
 			Var: CPI
 			Var: GDP_r
+			Var: GDP_r_income
 
 		}
 
@@ -862,7 +863,7 @@ Var: Country_Autonomous_Energy 0 n + n n
 Object: CLASSES C	3
 Param: class_autonomous_consumption_adjustment 0 n + n n	1	1	1
 Param: class_debt_rate_adjustment 0 n + n n	0	0	0
-Param: class_direct_tax 0 s + n n	0.227597943484925	0.227597943484925	0.227597943484925
+Param: class_direct_tax 0 s + n n	0	0.227597943484925	0.227597943484925
 Param: class_id 0 n + n n	1	2	3
 Param: class_import_elasticity_price 0 n + n n	0	0	0
 Param: class_initial_imports_share 0 n + n n	0.449297519244477	0.242077799202152	0.0297759451717615
@@ -909,13 +910,13 @@ Var: Class_Stock_Deposits 5 s + n n	119.141207380943	83.75	0	0	0	105.09910752200
 Var: Class_Stock_Loans 1 s + n n	0	0	0
 Var: Class_Taxation 0 s + n n
 Var: Class_Wealth_Share 0 s + n n
-Var: Class_Effective_Real_Energy 0 s + n n
-Var: Class_Real_Desired_Energy 0 s + n n
-Var: Class_Real_Energy_Demand 0 s + n n
 Param: class_autonomous_energy_adjustment 0 n + n n	1	1	1
 Param: class_expenses_consumption_share 0 n + n n	0.96	0.95	0.92
 Param: class_propensity_to_energy 0 n + n n	0.03	0.05	0.08
 Var: Class_Real_Autonomous_Energy 1 s + n n	3.12722330241032	2.50177864192826	0.625444660482065
+Var: Class_Real_Desired_Energy 0 s + n n
+Var: Class_Real_Energy_Demand 0 s + n n
+Var: Class_Effective_Real_Energy 0 s + n n
 
 Object: CLASS_LOANS C	2	2	2
 Param: class_loan_fixed_amortization 0 n + n n	0	0	0	0	0	0
@@ -1470,6 +1471,7 @@ Var: WAGE 1 s + n n	103.176421547774
 Var: EMP 1 s + n n	254.495671875811
 Var: CPI 0 s + n n
 Var: GDP_r 0 s + n n
+Var: GDP_r_income 0 s + n n
 
 SIM_NUM 1
 SEED 1
@@ -2363,24 +2365,6 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_Class_Effective_Real_Energy
-Class effective real domestic consumption, depending on how much the domestic consumption goods sector was able to meet demand.
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Class_Real_Desired_Energy
-Class real domestic energy consumption is based on the amount of consumption goods, domestic and imported. All class's energy demand is provided domestically
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Class_Real_Energy_Demand
-Class effective energy demand. 
-_INIT_
-
-END_DESCRIPTION
-
 Parameter_class_autonomous_energy_adjustment
 (no description available)
 _INIT_
@@ -2401,6 +2385,24 @@ END_DESCRIPTION
 
 Variable_Class_Real_Autonomous_Energy
 Class autonomous energy consumption depends on the average quality growth of the energy sector
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Real_Desired_Energy
+Class real domestic energy consumption is based on the amount of consumption goods, domestic and imported. All class's energy demand is provided domestically
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Real_Energy_Demand
+Class effective energy demand. 
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Effective_Real_Energy
+Class effective real domestic consumption, depending on how much the domestic consumption goods sector was able to meet demand.
 _INIT_
 
 END_DESCRIPTION
@@ -5822,6 +5824,12 @@ _INIT_
 END_DESCRIPTION
 
 Variable_GDP_r
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GDP_r_income
 (no description available)
 _INIT_
 

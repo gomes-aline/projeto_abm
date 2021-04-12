@@ -68,6 +68,9 @@ RESULT(VS(country,"Country_Gini_Index"))
 EQUATION("GDP_r")//Real GDP
 RESULT(VS(country, "Country_Real_GDP_Demand"))
 
+EQUATION("GDP_r_income")//Real GDP
+RESULT(VS(country, "Country_Real_GDP"))
+
 EQUATION("C_r")//Quarterly Real Consumption
 RESULT(VS(country, "Country_Total_Classes_Expenses")/V("P"))
 
