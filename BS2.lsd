@@ -66,13 +66,13 @@ Label Root
 			Var: Class_Stock_Loans
 			Var: Class_Taxation
 			Var: Class_Wealth_Share
-			Var: Class_Effective_Real_Energy
-			Var: Class_Real_Desired_Energy
-			Var: Class_Real_Energy_Demand
 			Param: class_autonomous_energy_adjustment
 			Param: class_expenses_consumption_share
 			Param: class_propensity_to_energy
 			Var: Class_Real_Autonomous_Energy
+			Var: Class_Real_Desired_Energy
+			Var: Class_Real_Energy_Demand
+			Var: Class_Effective_Real_Energy
 
 		}
 
@@ -163,7 +163,6 @@ Label Root
 				Param: cb_target_debt_rate
 				Var: Central_Bank_Basic_Interest_Rate
 				Param: cb_target_reserves
-				Param: cb_sensitivity_reserves
 
 			}
 
@@ -662,6 +661,7 @@ Label Root
 			Var: EMP
 			Var: CPI
 			Var: GDP_r
+			Var: GDP_r_income
 
 		}
 
@@ -749,7 +749,7 @@ Label Root
 		Param: switch_energy_efficiency_innovation
 		Param: energy_innovation_mean
 		Param: energy_innovation_sd
-		Param: time_energy_policy
+		Param: begin_energy_policy
 		Var: Country_Domestic_Energy_Demand
 		Param: energy_sector_markup_rnd
 		Var: Country_Nominal_Energy_Production
@@ -757,7 +757,7 @@ Label Root
 
 	}
 
-	Param: Initialization_2
+	Var: Initialization_2
 	Var: Time_Step
 
 }
@@ -766,7 +766,7 @@ Label Root
 DATA
 
 Object: Root C	1
-Param: Initialization_2 0 n + n n	0
+Var: Initialization_2 0 n + n n
 Var: Time_Step 0 n + n n
 
 Object: COUNTRY C	1
@@ -774,9 +774,9 @@ Param: annual_frequency 0 n + n n	4
 Param: begin_credit_rationing 0 n + n n	-1
 Param: begin_debt_target_rule 0 n + n n	-1
 Param: begin_expenses_ceiling_rule 0 n + n n	-1
-Param: begin_flexible_surplus_target 0 n + n n	-1
+Param: begin_flexible_surplus_target 0 n + n n	0
 Param: begin_monetary_policy 0 n + n n	0
-Param: begin_surplus_target_rule 0 n + n n	-1
+Param: begin_surplus_target_rule 0 n + n n	0
 Param: country_initial_depreciation_share_GDP 0 n + n n	0.1
 Param: country_initial_exports_share_GDP 0 n + n n	0.1
 Param: country_initial_government_share_GDP 0 n + n n	0.2
@@ -784,20 +784,20 @@ Param: entry_debt_share 0 n + n n	0
 Param: survival_period 0 n + n n	0
 Param: switch_class_tax_structure 0 n + n n	3
 Param: switch_creditworthness 0 n + n n	0
-Param: switch_entry 0 n + n n	0
-Param: switch_extra_gov_expenses 0 n + n n	0
+Param: switch_entry 0 n + n n	1
+Param: switch_extra_gov_expenses 0 n + n n	1
 Param: switch_extra_imports 0 n + n n	0
 Param: switch_government_priority 0 n + n n	1
 Param: switch_interest_investment 0 n + n n	0
 Param: switch_interest_payment 0 n + n n	0
-Param: switch_monetary_policy 0 n + n n	1
+Param: switch_monetary_policy 0 n + n n	2
 Param: switch_reserves_target 0 n + n n	0
 Var: Country_Annual_CPI_Inflation 1 s + n n	0
 Var: Country_Annual_GDP 0 s + n n
-Var: Country_Annual_Growth 1 s + n n	-0.0421918280717594
+Var: Country_Annual_Growth 1 s + n n	-0.0205146295090857
 Var: Country_Annual_Inflation 1 s + n n	0
 Var: Country_Annual_Real_GDP 0 s + n n
-Var: Country_Annual_Real_Growth 1 s + n n	-0.0292078664764796
+Var: Country_Annual_Real_Growth 1 s + n n	-0.0106177684130875
 Var: Country_Autonomous_Consumption 0 n + n n
 Var: Country_Autonomous_Investment 0 s + n n
 Var: Country_Avg_HHI 0 s + n n
@@ -805,36 +805,36 @@ Var: Country_Avg_Markup 0 s + n n
 Var: Country_Avg_Productivity 5 n + n n	1	1	1	1	1
 Var: Country_Avg_Profit_Rate 0 s + n n
 Var: Country_Capacity_Utilization 0 s + n n
-Var: Country_Capital_Goods_Price 6 s + n n	2.00852164193417	2	2	2	2	0
+Var: Country_Capital_Goods_Price 6 s + n n	2.01122794759557	2	2	2	2	2
 Var: Country_Capital_Labor_Ratio 0 s + n n
 Var: Country_Capital_Output_Ratio 0 s + n n
 Var: Country_Capital_Stock 0 n + n n
-Var: Country_Consumer_Price_Index 5 s + n n	1.00046133776208	1	1	1	1
+Var: Country_Consumer_Price_Index 5 s + n n	1.0030984452138	1	1	1	1
 Var: Country_Debt_Rate_Class 1 s + n n	0
-Var: Country_Debt_Rate_Firms 1 s + n n	0.0989599384444251
+Var: Country_Debt_Rate_Firms 1 s + n n	0.24610503503798
 Var: Country_Distributed_Profits 0 s + n n
 Var: Country_Domestic_Capital_Goods_Demand 0 s + n n
 Var: Country_Domestic_Consumption_Demand 0 s + n n
 Var: Country_Domestic_Intermediate_Demand 0 s + n n
-Var: Country_GDP 10 s + n n	170.402700981157	205	205	205	205	205	205	205	205	205
+Var: Country_GDP 10 s + n n	188.17800380255	205	205	205	205	205	205	205	205	205
 Var: Country_GDP_Demand 0 s + n n
 Var: Country_Gini_Index 0 s + n n
 Var: Country_Hedge_Share 0 s + n n
-Var: Country_Idle_Capacity 5 s + n n	0.132921768869858	0.132921768869858	0.1	0.1	0.1
+Var: Country_Idle_Capacity 5 s + n n	0.239048670737196	0.239048670737196	0.1	0.1	0.1
 Var: Country_Induced_Investment 0 s + n n
-Var: Country_Inventories 1 n + n n	42.0066989771788
+Var: Country_Inventories 1 n + n n	26.4609055269726
 Var: Country_Inventories_Variation 0 n + n n
 Var: Country_Likelihood_Crisis 0 s + n n
 Var: Country_Nominal_Capital_Production 0 s + n n
 Var: Country_Nominal_Consumption_Production 0 s + n n
 Var: Country_Nominal_Input_Production 0 s + n n
 Var: Country_Ponzi_Share 0 s + n n
-Var: Country_Price_Index 5 s + n n	0.991278139166406	1.05321370777158	1.05321370777158	1.05321370777158	1.05321370777158
+Var: Country_Price_Index 5 s + n n	1.03973892097799	1.0845790415269	1.0845790415269	1.0845790415269	1.0845790415269
 Var: Country_Productive_Capacity_Depreciated 0 s + n n
 Var: Country_Productive_Capacity_Expansion 0 s + n n
 Var: Country_Productive_Capacity_Replacement 0 s + n n
 Var: Country_Profit_Share 0 s + n n
-Var: Country_Real_GDP 9 s + n p	171.902006357624	194.642358419114	194.642358419114	194.642358419114	194.642358419114	194.642358419114	194.642358419114	194.642358419114	194.642358419114
+Var: Country_Real_GDP 9 s + n p	180.985822503929	189.013425624928	189.013425624928	189.013425624928	189.013425624928	189.013425624928	189.013425624928	189.013425624928	189.013425624928
 Var: Country_Real_GDP_Demand 0 s + n n
 Var: Country_Speculative_Share 0 s + n n
 Var: Country_Total_Classes_Expenses 0 n + n n
@@ -854,7 +854,7 @@ Param: switch_energy_efficiency_imitation 0 n + n n	0
 Param: switch_energy_efficiency_innovation 0 n + n n	0
 Param: energy_innovation_mean 0 n + n n	0.01
 Param: energy_innovation_sd 0 n + n n	0.005
-Param: time_energy_policy 0 n + n n	100
+Param: begin_energy_policy 0 n + n n	40
 Var: Country_Domestic_Energy_Demand 0 s + n n
 Param: energy_sector_markup_rnd 0 n + n n	1.2
 Var: Country_Nominal_Energy_Production 0 s + n n
@@ -863,10 +863,10 @@ Var: Country_Autonomous_Energy 0 n + n n
 Object: CLASSES C	3
 Param: class_autonomous_consumption_adjustment 0 n + n n	1	1	1
 Param: class_debt_rate_adjustment 0 n + n n	0	0	0
-Param: class_direct_tax 0 s + n n	0.233888802094646	0.233888802094646	0.233888802094646
+Param: class_direct_tax 0 s + n n	0	0.227597943484925	0.227597943484925
 Param: class_id 0 n + n n	1	2	3
 Param: class_import_elasticity_price 0 n + n n	0	0	0
-Param: class_initial_imports_share 0 n + n n	0.147260792771662	0.0933695118843124	0.0211471777531304
+Param: class_initial_imports_share 0 n + n n	0.449297519244477	0.242077799202152	0.0297759451717615
 Param: class_liquidity_preference_adjustment 0 n + n n	0	0	0
 Param: class_population_share 0 n + n n	0.01	0.09	0.9
 Param: class_profit_share 0 n + n n	0.5	0.4	0.1
@@ -875,8 +875,8 @@ Param: class_wage_share 0 n + n n	0.1	0.2	0.7
 Param: class_wealth_tax 0 n + n n	0	0	0
 Var: Class_Available_Deposits 0 s + n n
 Var: Class_Avg_Debt_Rate 0 n + n n
-Var: Class_Avg_Nominal_Income 1 n + n n	12.7839354181293	11.5214878201846	9.89137750248586
-Var: Class_Avg_Real_Income 1 n + n n	12.7839354181293	11.5214878201846	9.89137750248586
+Var: Class_Avg_Nominal_Income 1 n + n n	9.48061323897709	10.0548926790779	15.8950678125405
+Var: Class_Avg_Real_Income 1 n + n n	9.48061323897709	10.0548926790779	15.8950678125405
 Var: Class_Debt_Payment 0 s + n n
 Var: Class_Debt_Rate 4 s + n n	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Class_Demand_Loans 0 s + n n
@@ -888,7 +888,7 @@ Var: Class_Effective_Real_Domestic_Consumption 0 s + n n
 Var: Class_Effective_Real_Imported_Consumption 0 s + n n
 Var: Class_Financial_Obligations 0 s + n n
 Var: Class_Funds 0 s + n n
-Var: Class_Imports_Share 1 s + n n	0.147260792771662	0.0933695118843124	0.0211471777531304
+Var: Class_Imports_Share 1 s + n n	0.449297519244477	0.242077799202152	0.0297759451717615
 Var: Class_Income_Share 0 s + n n
 Var: Class_Interest_Payment 0 s + n n
 Var: Class_Interest_Rate 0 n + n n
@@ -897,31 +897,31 @@ Var: Class_Liquidity_Preference 1 s + n n	0	0	0
 Var: Class_Max_Debt_Rate 1 s + n n	0.5	0.4	0.1
 Var: Class_Max_Loans 0 s + n n
 Var: Class_Maximum_Expenses 0 s + n n
-Var: Class_Nominal_Disposable_Income 4 s + n n	41.3819289089543	51.1357416725171	0	0	38.1883727697346	46.0859512807384	0	0	37.0790870896944	39.5655100099435	0	0
+Var: Class_Nominal_Disposable_Income 4 s + n n	30.7346359702083	37.9224529559083	0	0	34.5309833017801	40.2195707163115	0	0	62.4921495058509	63.5802712501622	0	0
 Var: Class_Nominal_Gross_Income 0 s + n n
-Var: Class_Real_Autonomous_Consumption 1 s + n n	16.7695165776121	13.4156132620897	3.35390331552241
+Var: Class_Real_Autonomous_Consumption 1 s + n n	16.1270388928251	12.9016311142601	3.22540777856503
 Var: Class_Real_Desired_Domestic_Consumption 0 s + n n
 Var: Class_Real_Desired_Imported_Consumption 0 s + n n
-Var: Class_Real_Disposable_Income 4 s + n n	41.3628466658403	51.1357416725171	0	0	38.1707631552838	46.0859512807384	0	0	37.0619889946335	39.5655100099435	0	0
+Var: Class_Real_Disposable_Income 4 s + n n	30.6397005367281	37.9224529559083	0	0	34.4243214278139	40.2195707163115	0	0	62.2991190984566	63.5802712501622	0	0
 Var: Class_Real_Domestic_Consumption_Demand 0 s + n n
 Var: Class_Real_Imported_Consumption_Demand 0 s + n n
 Var: Class_Retained_Deposits 0 s + n n
-Var: Class_Stock_Deposits 5 s + n n	98.81172234101	49	0	0	0	84.1318874005008	39.2	0	0	0	48.9389268212152	9.8	0	0	0
+Var: Class_Stock_Deposits 5 s + n n	119.141207380943	83.75	0	0	0	105.099107522004	67	0	0	0	79.6047771334606	16.75	0	0	0
 Var: Class_Stock_Loans 1 s + n n	0	0	0
 Var: Class_Taxation 0 s + n n
 Var: Class_Wealth_Share 0 s + n n
-Var: Class_Effective_Real_Energy 0 s + n n
-Var: Class_Real_Desired_Energy 0 s + n n
-Var: Class_Real_Energy_Demand 0 s + n n
 Param: class_autonomous_energy_adjustment 0 n + n n	1	1	1
 Param: class_expenses_consumption_share 0 n + n n	0.96	0.95	0.92
 Param: class_propensity_to_energy 0 n + n n	0.03	0.05	0.08
-Var: Class_Real_Autonomous_Energy 1 s + n n	4.43082956484293	3.54466365187434	0.886165912968585
+Var: Class_Real_Autonomous_Energy 1 s + n n	3.12722330241032	2.50177864192826	0.625444660482065
+Var: Class_Real_Desired_Energy 0 s + n n
+Var: Class_Real_Energy_Demand 0 s + n n
+Var: Class_Effective_Real_Energy 0 s + n n
 
 Object: CLASS_LOANS C	2	2	2
 Param: class_loan_fixed_amortization 0 n + n n	0	0	0	0	0	0
 Param: class_loan_fixed_object 0 n + n n	1	0	1	0	1	0
-Param: class_loan_interest_rate 0 n + n n	0	0.0174170717777329	0	0.0174170717777329	0	0.0174170717777329
+Param: class_loan_interest_rate 0 n + n n	0	0.0149629315732038	0	0.0149629315732038	0	0.0149629315732038
 Param: class_loan_total_amount 0 n + n n	0	0	0	0	0	0
 
 Object: EXTERNAL_SECTOR C	1
@@ -933,20 +933,20 @@ Param: external_income_adjustmnent 0 n + n n	0
 Param: external_income_growth 0 n + n n	0.0025
 Param: external_income_sd 0 n + n n	0.01
 Param: external_interest_rate 0 n + n n	0.03
-Param: external_shock_begin 0 n + n n	600
-Param: external_shock_duration 0 n + n n	0
+Param: external_shock_begin 0 n + n n	400
+Param: external_shock_duration 0 n + n n	20
 Param: external_shock_size 0 n + n n	0
 Param: initial_exchange_rate 0 n + n n	1
 Param: initial_external_income_scale 0 n + n n	1
 Param: initial_reserves_ratio 0 n + n n	1
-Var: Country_Capital_Flows 1 s + n n	0
+Var: Country_Capital_Flows 1 s + n n	-0.503098741928456
 Var: Country_Exchange_Rate 1 s + n n	1
-Var: Country_International_Reserves 1 s + n n	211.426453124709
-Var: Country_International_Reserves_GDP_Ratio 1 s + n n	1.2407459031303
-Var: Country_Nominal_Exports 1 s + n n	21.9332681083752
-Var: Country_Nominal_Imports 1 s + n n	15.5068149836666
-Var: Country_Trade_Balance 1 s + n n	6.42645312470862
-Var: External_Real_Income 2 s + n n	196.167986422379	194.642358419114
+Var: Country_International_Reserves 1 s + n n	214.742417361964
+Var: Country_International_Reserves_GDP_Ratio 1 s + n n	1.14116641170924
+Var: Country_Nominal_Exports 1 s + n n	19.343706403392
+Var: Country_Nominal_Imports 1 s + n n	9.09819029949963
+Var: Country_Trade_Balance 1 s + n n	10.2455161038924
+Var: External_Real_Income 2 s + n n	190.49493343992	189.013425624928
 
 Object: FINANCIAL C	1
 Param: fs_elasticity_default 0 n + n n	0
@@ -955,25 +955,25 @@ Param: fs_elasticity_interest_short_term 0 n + n n	0
 Param: fs_elasticity_rationing 0 n + n n	0
 Param: fs_expectations 0 n + n n	0
 Param: fs_initial_leverage 0 n + n n	1
-Param: fs_number_object_banks 0 n + n n	1
+Param: fs_number_object_banks 0 n + n n	10
 Param: fs_price_strategy_long_term 0 n + n n	1
 Param: fs_price_strategy_short_term 0 n + n n	1
 Param: fs_risk_premium_class 0 n + n n	0
 Param: fs_risk_premium_long_term 0 n + n n	0
 Param: fs_risk_premium_short_term 0 n + n n	0
-Param: fs_sensitivity_debt_rate 0 n + n n	0
-Param: fs_sensitivity_default 0 n + n n	0
+Param: fs_sensitivity_debt_rate 0 n + n n	0.5
+Param: fs_sensitivity_default 0 n + n n	0.5
 Param: fs_spread_deposits 0 n + n n	1
 Param: fs_spread_long_term 0 n + n n	0.05
 Param: fs_spread_long_term_adjustment 0 n + n n	0
 Param: fs_spread_short_term 0 n + n n	0.01
 Param: fs_spread_short_term_adjustment 0 n + n n	0
 Var: Financial_Sector_Accumulated_Defaulted_Loans 0 s + n n
-Var: Financial_Sector_Accumulated_Profits 1 s + n n	0
+Var: Financial_Sector_Accumulated_Profits 1 s + n n	35.6830638581068
 Var: Financial_Sector_Accumulated_Rescue 0 s + n n
-Var: Financial_Sector_Avg_Competitiveness 1 s + n n	10
-Var: Financial_Sector_Avg_Interest_Rate_Long_Term 1 s + n n	0.0574170717777329
-Var: Financial_Sector_Avg_Interest_Rate_Short_Term 1 s + n n	0.0174170717777329
+Var: Financial_Sector_Avg_Competitiveness 1 s + n n	1
+Var: Financial_Sector_Avg_Interest_Rate_Long_Term 1 s + n n	0.0549629315732038
+Var: Financial_Sector_Avg_Interest_Rate_Short_Term 1 s + n n	0.0149629315732038
 Var: Financial_Sector_Debt_Payment 0 s + n n
 Var: Financial_Sector_Default_Rate 0 s + n n
 Var: Financial_Sector_Defaulted_Loans 0 s + n n
@@ -993,8 +993,8 @@ Var: Financial_Sector_Short_Term_Rate 0 s + n n
 Var: Financial_Sector_Stock_Deposits 0 s + n n
 Var: Financial_Sector_Stock_Loans_Long_Term 0 s + n n
 Var: Financial_Sector_Stock_Loans_Short_Term 0 s + n n
-Var: Financial_Sector_Total_Stock_Loans 1 s + n n	96.936
-Var: Financial_Sector_Total_Stock_Loans_Growth 1 s + n n	-0.0108571428571431
+Var: Financial_Sector_Total_Stock_Loans 1 s + n n	165.024860331759
+Var: Financial_Sector_Total_Stock_Loans_Growth 1 s + n n	-0.0147769532432272
 Var: Financial_Sector_Turbulence 0 s + n n
 Var: Financial_Sector_Interest_Rate_Deposits 1 s + n n	0
 
@@ -1002,24 +1002,24 @@ Object: BANKS C	10
 Param: bank_defaulted_loans_temporary 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: bank_id 0 n + n n	1	2	3	4	5	6	7	8	9	10
 Var: Bank_Accumulated_Defaulted_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
-Var: Bank_Accumulated_Profits 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: Bank_Accumulated_Profits 1 n + n n	2.93125	4.07304441240226	2.93125	4.00830476709295	4.0443358765134	2.93125	2.93125	2.93125	5.02042609673486	3.88070270536335
 Var: Bank_Competitiveness 1 n + n n	1	1	1	1	1	1	1	1	1	1
 Var: Bank_Debt_Payment 0 n + n n
 Var: Bank_Default_Share 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Defaulted_Loans 1 n + n n	0	0	0	0	0	0	0	0	0	0
-Var: Bank_Demand_Loans 1 n + n n	19.3167805373749	0	0	0	0	0	0	0	0	0
+Var: Bank_Demand_Loans 1 n + n n	3.40382867554085	5.11618900730029	1.61381588265585	1.71236033175944	5.0176445581967	0	0	0	2.78824812824083	0
 Var: Bank_Demand_Met 1 n + n n	1	1	1	1	1	1	1	1	1	1
-Var: Bank_Desired_Interest_Rate_Long_Term 1 n + n n	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329
+Var: Bank_Desired_Interest_Rate_Long_Term 1 n + n n	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038
 Var: Bank_Desired_Interest_Rate_Short_Term 0 n + n n
 Var: Bank_Desired_Long_Term_Spread 1 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
 Var: Bank_Desired_Short_Term_Spread 1 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
 Var: Bank_Distributed_Profits 0 n + n n
 Var: Bank_Effective_Loans 0 n + n n
 Var: Bank_Interest_Payment 0 n + n n
-Var: Bank_Interest_Rate_Long_Term 1 n + n n	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329
-Var: Bank_Interest_Rate_Short_Term 1 n + n n	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329	0.0174170717777329
+Var: Bank_Interest_Rate_Long_Term 1 n + n n	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038	0.0549629315732038
+Var: Bank_Interest_Rate_Short_Term 1 n + n n	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038	0.0149629315732038
 Var: Bank_Interest_Receivment 0 n + n n
-Var: Bank_Leverage 1 n + n n	2.51235879593775	0	0	0	0	0	0	0	0	0
+Var: Bank_Leverage 1 n + n n	0.365425880794275	0.597520191088895	0.250958881031194	0.670786416222468	0.628547260483276	0.399586282807218	0.29497892380675	0.235863233324564	1.11363003457592	0.696007100770554
 Var: Bank_Market_Share 1 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1
 Var: Bank_Max_Total_Loans 0 n + n n
 Var: Bank_Number_Clients 0 n + n n
@@ -1027,9 +1027,9 @@ Var: Bank_Profits 0 n + n n
 Var: Bank_Rescue 0 n + n n
 Var: Bank_Short_Term_Rate 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Var: Bank_Stock_Deposits 0 n + n n
-Var: Bank_Stock_Loans_Long_Term 1 n + n n	96.936	0	0	0	0	0	0	0	0	0
+Var: Bank_Stock_Loans_Long_Term 1 n + n n	11.2125	18.525	7.8	21.45	19.7498603317594	12.675	9.2625	7.3125	34.6125	22.425
 Var: Bank_Stock_Loans_Short_Term 0 n + n n
-Var: Bank_Total_Stock_Loans 1 n + n n	96.936	0	0	0	0	0	0	0	0	0
+Var: Bank_Total_Stock_Loans 1 n + n n	11.2125	18.525	7.8	21.45	19.7498603317594	12.675	9.2625	7.3125	34.6125	22.425
 Var: Bank_Effective_Profit_Rate 0 n + n n
 Var: Bank_Retained_Profits 0 n + n n
 Var: Bank_Effective_Capital_Ratio 0 n + n n
@@ -1037,18 +1037,17 @@ Var: Bank_Effective_Capital_Ratio 0 n + n n
 Object: CENTRAL_BANK C	1
 Param: cb_annual_real_interest_rate 0 n + n n	0.01
 Param: cb_interest_rate_adjustment 0 n + n n	0.0025
-Param: cb_minimum_capital_ratio 0 n + n n	0
-Param: cb_sensitivity_capacity 0 n + n n	0
-Param: cb_sensitivity_credit_growth 0 n + n n	0
-Param: cb_sensitivity_debt_rate 0 n + n n	0
-Param: cb_sensitivity_inflation 0 n + n n	0
+Param: cb_minimum_capital_ratio 0 n + n n	0.05
+Param: cb_sensitivity_capacity 0 n + n n	0.2
+Param: cb_sensitivity_credit_growth 0 n + n n	1.1
+Param: cb_sensitivity_debt_rate 0 n + n n	1.1
+Param: cb_sensitivity_inflation 0 n + n n	1.1
 Param: cb_target_annual_inflation 0 n + n n	0.02
 Param: cb_target_capacity 0 n + n n	0.15
 Param: cb_target_credit_growth 0 n + n n	0.01
 Param: cb_target_debt_rate 0 n + n n	0.5
-Var: Central_Bank_Basic_Interest_Rate 1 s + n n	0.00741707177773288
+Var: Central_Bank_Basic_Interest_Rate 1 s + n n	0.00496293157320382
 Param: cb_target_reserves 0 n + n n	0.5
-Param: cb_sensitivity_reserves 0 n + n n	0
 
 Object: GOVERNMENT C	1
 Param: government_benefit_rate 0 n + n n	0
@@ -1057,23 +1056,23 @@ Param: government_inflation_passtrought 0 n + n n	1
 Param: government_initial_debt_gdp_ratio 0 n + n n	0.5
 Param: government_initial_share_capital 0 n + n n	0.3
 Param: government_initial_share_consumption 0 n + n n	0.1
-Param: government_initial_share_input 0 n + n n	0.05
+Param: government_initial_share_input 0 n + n n	0.1
 Param: government_max_debt_ratio 0 n + n n	1
 Param: government_max_surplus_target 0 s + n n	0.03
 Param: government_min_debt_ratio 0 n + n n	0.5
 Param: government_min_surplus_target 0 s + n n	-0.03
 Param: government_real_growth 0 n + n n	0.0025
 Param: government_surplus_target_adjustment 0 n + n n	0.001
-Var: Government_Debt 5 s + n n	95.4196946478628	102.5	0	0	0
-Var: Government_Debt_GDP_Ratio 5 s + n n	0.559965857926243	0.5	0.5	0.5	0.5
+Var: Government_Debt 5 s + n n	106.363273221015	102.5	0	0	0
+Var: Government_Debt_GDP_Ratio 5 s + n n	0.565226918511789	0.5	0.5	0.5	0.5
 Var: Government_Desired_Consumption 1 s + n n	4.11025
 Var: Government_Desired_Expenses 0 n + n n
-Var: Government_Desired_Inputs 1 s + n n	2.055125
+Var: Government_Desired_Inputs 1 s + n n	4.11025
 Var: Government_Desired_Investment 1 s + n n	12.33075
 Var: Government_Desired_Unemployment_Benefits 1 s + n n	0
-Var: Government_Desired_Wages 1 s + n n	20.55125
+Var: Government_Desired_Wages 1 s + n n	18.496125
 Var: Government_Effective_Consumption 0 s + n n
-Var: Government_Effective_Expenses 5 s + n n	27.77175	41	41	41	41
+Var: Government_Effective_Expenses 5 s + n n	41	41	41	41	41
 Var: Government_Effective_Inputs 0 s + n n
 Var: Government_Effective_Investment 0 s + n n
 Var: Government_Effective_Unemployment_Benefits 0 s + n n
@@ -1081,15 +1080,15 @@ Var: Government_Effective_Wages 0 s + n n
 Var: Government_Income_Taxes 0 n + n n
 Var: Government_Indirect_Taxes 0 n + n n
 Var: Government_Interest_Payment 0 s + n n
-Var: Government_Max_Expenses 1 s + n n	-1
+Var: Government_Max_Expenses 1 s + n n	41
 Var: Government_Max_Expenses_Ceiling 1 s + n n	41
-Var: Government_Max_Expenses_Debt 1 s + n n	143.5
+Var: Government_Max_Expenses_Debt 1 s + n n	143.751549370964
 Var: Government_Max_Expenses_Surplus 1 s + n n	41
 Var: Government_Nominal_Result 0 s + n n
 Var: Government_Primary_Result 0 s + n n
 Var: Government_Surplus_GDP_Ratio 0 s + n n
 Var: Government_Surplus_Rate_Target 1 s + n n	0.00370853588886644
-Var: Government_Total_Taxes 1 s + n n	35.6123052093548
+Var: Government_Total_Taxes 1 s + n n	37.6454272652385
 Var: Government_Effective_Energy 0 s + n n
 Param: government_initial_share_energy 0 n + n n	0.05
 Var: Government_Desired_Energy 1 s + n n	2.055125
@@ -1105,28 +1104,28 @@ Param: sector_capital_duration 0 n + n n	40	40	40	40
 Param: sector_capital_output_ratio 0 n + n n	1	1	1	1
 Param: sector_competitiveness_adjustment 0 n + n n	1	1	1	1
 Param: sector_debt_rate_adjustment 0 n + n n	0.001	0.001	0.001	0.001
-Param: sector_desired_degree_capacity_utilization 0 n + n n	0.864567952548589	0.7046875	0.87072883756353	0.896774138428941
+Param: sector_desired_degree_capacity_utilization 0 n + n n	0.756496958480015	0.67265625	0.780119582571942	0.786459552253655
 Param: sector_desired_inventories_proportion 0 n + n n	0.1	0.1	0.1	0.1
 Param: sector_desired_market_share 0 n + n n	1	1	1	1
 Param: sector_elascitity_delay 0 n + n n	0.25	0.25	0.25	0.25
 Param: sector_elasticity_price 0 n + n n	1	1	1	1
 Param: sector_elasticity_quality 0 n + n n	0.5	0.5	0.5	0.5
 Param: sector_expectations 0 n + n n	0.3	0.3	0.3	0.3
-Param: sector_exports_coefficient 0 n + n n	0.02	0.03	0.02	0.01
+Param: sector_exports_coefficient 0 n + n n	0.02	0.025	0.02	0.01
 Param: sector_exports_elasticity_income 0 n + n n	1	1	1	1
 Param: sector_exports_elasticity_price 0 n + n n	1	1	1	1
 Param: sector_external_price_competitiveness 0 n + n n	0	0	0	0
 Param: sector_external_price_growth 0 n + n n	0.005	0.005	0.005	0.005
 Param: sector_external_price_sd 0 n + n n	0.01	0.01	0.01	0.01
 Param: sector_external_price_shock_begin 0 n + n n	400	400	400	400
-Param: sector_external_price_shock_duration 0 n + n n	0	0	0	0
+Param: sector_external_price_shock_duration 0 n + n n	20	20	20	20
 Param: sector_external_price_shock_size 0 n + n n	0	0	0	0
 Param: sector_financial_cost_passtrough 0 n + n n	1	1	1	1
 Param: sector_indirect_tax_rate 0 n + n n	0	0	0	0
-Param: sector_initial_debt_rate 0 n + n n	0.1	0.1	0.1	0.1
-Param: sector_initial_demand 0 n + n n	121.039513356802	22.55	167.179936812198	112.993541442047
+Param: sector_initial_debt_rate 0 n + n n	0.25	0.25	0.25	0.25
+Param: sector_initial_demand 0 n + n n	121.039513356802	21.525	65.5300449360431	46.4011135829657
 Param: sector_initial_depreciation_scale 0 n + n n	1	1	1	1
-Param: sector_initial_exports_share 0 n + n n	0.2	0.6	0.2	0.1
+Param: sector_initial_exports_share 0 n + n n	0.2	0.5	0.2	0.1
 Param: sector_initial_external_price 0 n + n n	1	2	1	1
 Param: sector_initial_liquidity_preference 0 n + n n	0	0	0	0
 Param: sector_initial_price 0 n + n n	1	2	1	1
@@ -1135,17 +1134,17 @@ Param: sector_initial_profit_rate 0 n + n n	0.3	0.6	0.3	0.3
 Param: sector_initial_quality 0 n + n n	1	1	1	1
 Param: sector_innovation_proportion 0 n + n n	0.5	0.5	0.5	0.5
 Param: sector_input_import_share 0 n + n n	0.05	0.05	0.05	0.05
-Param: sector_input_tech_coefficient 0 n + n n	0.4	0.4	0.4	0.4
+Param: sector_input_tech_coefficient 0 n + n n	0.25	0.25	0.2	0.25
 Param: sector_investment_frequency 0 n + n n	4	4	4	4
 Param: sector_learning_adjustment 0 n + n n	0	0	0	0
 Param: sector_liquidity_preference_adjustment 0 n + n n	0	0	0	0
-Param: sector_markup_adjustment 0 n + n n	1	1	1	0
+Param: sector_markup_adjustment 0 n + n n	1	1	1	1
 Param: sector_number_object_firms 0 n + n n	20	8	12	1
-Param: sector_passthrough_inflation 0 s + n n	0.8	0.8	0.8	1
-Param: sector_passthrough_productivity 0 s + n n	0.8	0.8	0.8	1
+Param: sector_passthrough_inflation 0 s + n n	0.8	0.8	0.8	0.8
+Param: sector_passthrough_productivity 0 s + n n	0.8	0.8	0.8	0.8
 Param: sector_payback_period 0 n + n n	30	30	30	30
 Param: sector_price_frequency 0 n + n n	1	1	1	1
-Param: sector_profits_distribution_rate 0 n + n n	0.743885288859204	0.716186252771619	0.899509472725353	1.00383502745204
+Param: sector_profits_distribution_rate 0 n + n n	0.779686269986412	0.721254355400697	0.748207100787068	1.01706137214253
 Param: sector_rnd_revenue_proportion 0 n + n n	0.05	0.05	0.05	0.05
 Param: sector_std_dev_innovation 0 n + n n	0.01	0.01	0.01	0.01
 Param: sector_strategic_price_weight 0 n + n n	0.5	0.5	0	0
@@ -1164,88 +1163,88 @@ Var: Sector_Avg_Liquidity_Rate 0 s + n n
 Var: Sector_Avg_Markup 0 n + n n
 Var: Sector_Avg_Max_Debt_Rate 0 s + n n
 Var: Sector_Avg_Modernization_Rate 0 s + n n
-Var: Sector_Avg_Price 5 s + n n	1.00046133776208	1	1	1	1	2.00852164193417	2	2	2	2	1	1	1	1	1	0.76552637765869	1	1	1	1
+Var: Sector_Avg_Price 5 s + n n	1.0030984452138	1	1	1	1	2.01122794759557	2	2	2	2	1	1	1	1	1	0.740774917881782	1	1	1	1
 Var: Sector_Avg_Productivity 1 s + n n	1	1	1	1
-Var: Sector_Avg_Quality 5 n + n n	1.00013977641388	1	1	1	1	1.00022176664181	1	1	1	1	1.00063628889086	1	1	1	1	1.00178732719766	1	1	1	1
-Var: Sector_Avg_Wage 1 s + n n	0.0373052261643023	0.694643513635143	-0.0641992908950646	0.0379386480489082
+Var: Sector_Avg_Quality 5 n + n n	1.00013977641388	1	1	1	1	1.00181796498781	1	1	1	1	1.0001053924792	1	1	1	1	1.0001387529858	1	1	1	1
+Var: Sector_Avg_Wage 1 s + n n	0.240843503326578	0.896437773806326	0.242011023854925	0.242312431568152
 Var: Sector_Bargain_Power 1 s + n n	0	0	0	0
-Var: Sector_Capacity_Utilization 1 s + n n	0.864567952548589	0.7046875	0.87072883756353	0.896774138428941
+Var: Sector_Capacity_Utilization 1 s + n n	0.756496958480015	0.67265625	0.780119582571941	0.786459552253655
 Var: Sector_Demand_Met 6 s + n n	1	0	0	0	0	1	1	0	0	0	0	1	1	0	0	0	0	1	1	0	0	0	0	1
 Var: Sector_Demand_Met_By_Imports 6 s + n n	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1	0	1	1	1	1	1
 Var: Sector_Effective_Loans 0 s + n n
-Var: Sector_Effective_Orders 8 s + n n	121.039513356802	121.039513356802	121.039513356802	121.039513356802	121.039513356802	0	0	0	22.55	22.55	22.55	22.55	22.55	0	0	0	167.179936812198	167.179936812198	167.179936812198	167.179936812198	167.179936812198	0	0	0	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047	0	0	0
-Var: Sector_Effective_Production 0 s + n n
-Var: Sector_Employment 5 s + n n	121.039513356802	121.039513356802	121.039513356802	121.039513356802	121.039513356802	22.55	22.55	22.55	22.55	22.55	167.179936812198	167.179936812198	167.179936812198	167.179936812198	167.179936812198	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047
+Var: Sector_Effective_Orders 8 s + n n	121.039513356802	121.039513356802	121.039513356802	121.039513356802	121.039513356802	0	0	0	21.525	21.525	21.525	21.525	21.525	0	0	0	65.5300449360431	65.5300449360431	65.5300449360431	65.5300449360431	65.5300449360431	0	0	0	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	0	0	0
+Var: Sector_Effective_Production 0 s + n p
+Var: Sector_Employment 5 s + n n	121.039513356802	121.039513356802	121.039513356802	121.039513356802	121.039513356802	21.525	21.525	21.525	21.525	21.525	65.5300449360431	65.5300449360431	65.5300449360431	65.5300449360431	65.5300449360431	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657
 Var: Sector_Entry_Condition 0 n + n n
 Var: Sector_Entry_Deposits_Needed 0 s + n n
 Var: Sector_Exports_Share 0 s + n n
-Var: Sector_External_Price 1 s + n n	1.01229975617839	2.04827640763808	1.00340915625199	1.00461304483435
+Var: Sector_External_Price 1 s + n n	1.01229975617839	2.04827640763808	1.00340915625199	1.00233781459138
 Var: Sector_Extra_Imports 0 n + n n
 Var: Sector_Hedge_Normalized_Share 0 s + n n
 Var: Sector_Hedge_Share 0 s + n n
-Var: Sector_Idle_Capacity 4 s + n n	0.135432047451411	0.135432047451411	0	0	0.2953125	0.2953125	0	0	0.12927116243647	0.12927116243647	0	0	0.103225861571059	0.103225861571059	0	0
-Var: Sector_Inventories 1 n + n n	12.1039513356803	2.255	16.7179936812198	11.2993541442047
-Var: Sector_Max_Productivity 1 n + n n	1.00597360822861	1.01950490553882	1.01034148763296	1
-Var: Sector_Max_Quality 1 n + n n	1.00279552827754	1.00177413313446	1.00344621704092	1.00178732719766
+Var: Sector_Idle_Capacity 4 s + n n	0.243503041519985	0.243503041519985	0	0	0.32734375	0.32734375	0	0	0.219880417428059	0.219880417428058	0	0	0.213540447746345	0.213540447746345	0	0
+Var: Sector_Inventories 1 n + n n	12.1039513356803	2.1525	6.55300449360432	4.64011135829657
+Var: Sector_Max_Productivity 1 n + n n	1.00597360822861	1.01950490553882	1.00995478703174	1
+Var: Sector_Max_Quality 1 n + n n	1.00279552827754	1.01276958676802	1.0012647097504	1.0001387529858
 Var: Sector_Normalized_HHI 0 n + n n
 Var: Sector_Number_Firms 1 s + n n	20	8	12	1
 Var: Sector_Participation 0 s + n n
 Var: Sector_Ponzi_Normalized_Share 0 s + n n
 Var: Sector_Ponzi_Share 0 s + n n
-Var: Sector_Productive_Capacity 1 s + n n	139	32	192	126
+Var: Sector_Productive_Capacity 1 s + n n	159	32	84	59
 Var: Sector_Productive_Capacity_Available 1 n + n n	0	0	0	0
 Var: Sector_Productive_Capacity_Entry 0 n + n n
 Var: Sector_Productive_Capacity_Exit 0 n + n n
 Var: Sector_Profit_Rate 0 s + n n
-Var: Sector_Real_Exports 1 s + n n	3.96978468492515	6.00152246508874	3.93673507479464	2.57434523342677
+Var: Sector_Real_Exports 1 s + n n	3.84484644741623	4.85010013914689	3.82288720866459	2.57757478912606
 Var: Sector_SD_Investment_Rate 0 n + n n
 Var: Sector_Sales 0 n + n n
 Var: Sector_Short_Term_Rate 0 n + n n
 Var: Sector_Speculative_Normalized_Share 0 n + n n
 Var: Sector_Speculative_Share 0 n + n n
 Var: Sector_Stock_Deposits 0 n + n n
-Var: Sector_Stock_Loans 1 n + n n	28.686	6.24	37.44	24.57
+Var: Sector_Stock_Loans 1 n + n n	79.7123603317595	15.6	40.95	28.7625
 Var: Sector_Taxation 0 n + n n
 Var: Sector_Turbulence 0 n + n n
-Param: sector_energy_tech_coefficient 0 n + n n	0.2	0.2	0.3	0.2
+Param: sector_energy_tech_coefficient 0 n + n n	0.125	0.125	0.175	0.125
 Param: sector_energy_import_share 0 n + n n	0.05	0.05	0.05	0.05
-Param: sector_energy_constrain 0 n + n n	0	0	0	0
+Param: sector_energy_constrain 0 n + n n	0.1	0.1	0.1	0.1
 Param: sector_energy_use_tax 0 n + n n	0	0	0	0
-Var: Sector_Min_Energy_Tech_Coefficient 1 s + n n	0.2	0.2	0.3	0.2
+Var: Sector_Min_Energy_Tech_Coefficient 1 s + n n	0.125	0.125	0.175	0.125
 
 Object: FIRMS C	20	8	12	1
-Param: firm_bank 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: firm_bank 0 n + n n	5	10	8	10	1	2	4	10	2	3	1	4	2	4	4	7	4	10	6	9	5	4	7	6	3	5	9	3	1	6	7	10	5	5	6	5	2	10	2	8	9
 Param: firm_date_birth 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Param: firm_effective_loans 0 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
-Param: firm_hedge 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: firm_hedge 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1
 Param: firm_id 0 n + n n	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	9	10	11	12	1
 Param: firm_ponzi 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: firm_speculative 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: firm_speculative 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	1	0	0	0	0
 Var: Firm_Available_Funds_After_Replacement 0 n + n n
 Var: Firm_Available_Funds_Replacement 0 n + n n
 Var: Firm_Available_Inputs_Ratio 0 n + n n
 Var: Firm_Available_Loans 0 n + n n
-Var: Firm_Avg_Debt_Rate 1 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1
+Var: Firm_Avg_Debt_Rate 1 n + n n	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25
 Var: Firm_Avg_Productivity 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
-Var: Firm_Capacity_Utilization 6 n + n n	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.864567952548589	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.7046875	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.87072883756353	0	0	0	0	0	0.896774138428941	0	0	0	0	0
-Var: Firm_Capital 1 n + n n	12.051129851605	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	14.0596514935392	8.03408656773668	8.03408656773668	8.03408656773668	8.03408656773668	8.03408656773668	8.03408656773668	8.03408656773668	8.03408656773668	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	32.1363462709467	253.073726883705
+Var: Firm_Capacity_Utilization 6 n + n n	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.756496958480015	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.67265625	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.780119582571942	0	0	0	0	0	0.786459552253655	0	0	0	0	0
+Var: Firm_Capital 1 n + n n	14.078595633169	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	16.0898235807646	8.04491179038229	8.04491179038229	8.04491179038229	8.04491179038229	8.04491179038229	8.04491179038229	8.04491179038229	8.04491179038229	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	14.078595633169	118.662448908139
 Var: Firm_Competitiveness 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Firm_Credit_Rationing 0 n + n n
 Var: Firm_Debt_Payment 0 n + n n
-Var: Firm_Debt_Rate 6 n + n n	0.228277351076224	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0	0.0970863325187866	0.1	0.1	0.1	0.1	0
+Var: Firm_Debt_Rate 6 n + n n	0.398644898823345	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0	0.242389233195972	0.25	0.25	0.25	0.25	0
 Var: Firm_Delivery_Delay 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Firm_Demand_Capital_Goods 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Var: Firm_Demand_Capital_Goods_Expansion 7 n + n n	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.622211385445415	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.622211385445415	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+Var: Firm_Demand_Capital_Goods_Expansion 7 n + n n	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.500087068360767	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.065136598648885	0	0	0	0	0	0
 Var: Firm_Demand_Capital_Goods_Replacement 7 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Demand_Loans 0 n + n n
-Var: Firm_Demand_Productive_Capacity_Expansion 7 n + n n	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.904032439549604	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.622211385445415	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.622211385445415	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+Var: Firm_Demand_Productive_Capacity_Expansion 7 n + n n	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.500087068360767	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.065136598648885	0	0	0	0	0	0
 Var: Firm_Demand_Productive_Capacity_Replacement 6 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Var: Firm_Deposits_Return 0 n + n n
 Var: Firm_Depreciated_Productive_Capacity 0 n + n n
-Var: Firm_Max_Debt_Rate 1 n + n n	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.199	0.2	0.2	0.2	0.201	0.2	0.2	0.2	0.201	0.2	0.2	0.2	0.201	0.2	0.2	0.2	0.199
+Var: Firm_Max_Debt_Rate 1 n + n n	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499	0.5	0.5	0.5	0.499
 Var: Firm_Desired_Expansion_Investment_Expenses 0 n + n n
 Var: Firm_Desired_Investment_Expenses 0 n + n n
-Var: Firm_Desired_Markup 1 n + n n	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.57055463290067	1.55799126371461	1.55799126371461	1.55799126371461	1.55799126371461	1.55799126371461	1.55799126371461	1.55799126371461	1.55799126371461	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.57032285390466	1.2
+Var: Firm_Desired_Markup 1 n + n n	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.6338515954012	1.59068413480943	1.59068413480943	1.59068413480943	1.59068413480943	1.59068413480943	1.59068413480943	1.59068413480943	1.59068413480943	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.6307897630983	1.2
 Var: Firm_Desired_Price 0 n + n n
 Var: Firm_Desired_Replacement_Investment_Expenses 0 n + n n
 Var: Firm_Distributed_Profits 0 n + n n
@@ -1256,16 +1255,16 @@ Var: Firm_Effective_Investment_Expenses 0 n + n n
 Var: Firm_Effective_Loans 0 n + n n
 Var: Firm_Effective_Market_Share 1 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	0.0833333333333333	1
 Var: Firm_Effective_Markup 0 n + n n
-Var: Firm_Effective_Orders 12 n + n n	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	0	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047	112.993541442047	0	0	0	0
-Var: Firm_Effective_Orders_Capital_Goods 7 n + n n	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	2.81875	2.81875	2.81875	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	0	0	0	2.81875	112.993541442047	112.993541442047	112.993541442047	0	0	0
+Var: Firm_Effective_Orders 12 n + n n	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	0	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	46.4011135829657	0	0	0	0
+Var: Firm_Effective_Orders_Capital_Goods 7 n + n n	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	6.05197566784012	6.05197566784012	6.05197566784012	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	2.690625	2.690625	2.690625	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	0	0	0	2.690625	46.4011135829657	46.4011135829657	46.4011135829657	0	0	0
 Var: Firm_Effective_Production 0 n + n n
 Var: Firm_Effective_Productive_Capacity_Variation 0 n + n n
 Var: Firm_Expected_Demand 0 n + n n
 Var: Firm_Expected_Sales_Long_Term 0 n + n n
 Var: Firm_External_Finance_Rate 0 n + n n
-Var: Firm_Financial_Obligations 6 n + n n	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.115383900488826	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.0659336574221863	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	0.263734629688745	0	0	0	0	0	2.07691020879887	0	0	0	0	0
+Var: Firm_Financial_Obligations 6 n + n n	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.329668287110932	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.164834143555466	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	0.288459751222065	0	0	0	0	0	2.43130361744312	0	0	0	0	0
 Var: Firm_Financial_Position 0 n + n n
-Var: Firm_Frontier_Productivity 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00597360822861	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.01950490553882	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00835395299751	1	1	1	1	1	1	1	1	1	1	1	1.00397309773896	1	1	1	1	1	1	1	1	1	1	1	1.01034148763296	1	1	1	1	1	1	1	1	1	1	1	1.00995478703174	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: Firm_Frontier_Productivity 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00597360822861	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.01950490553882	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00835395299751	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00995478703174	1	1	1	1	1	1	1	1	1	1	1
 Var: Firm_Imitation_Productivity 0 n + n n
 Var: Firm_Imitation_Quality 0 n + n n
 Var: Firm_Indirect_Tax 0 n + n n
@@ -1273,7 +1272,7 @@ Var: Firm_Innovation_Productivity 0 n + n n
 Var: Firm_Innovation_Quality 0 n + n n
 Var: Firm_Input_Cost 0 n + n n
 Var: Firm_Input_Demand_Next_Period 0 n + n n
-Var: Firm_Interest_Payment 6 n + n n	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0.080383900488826	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0.0459336574221863	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0.183734629688745	0	1.44691020879887	1.44691020879887	1.44691020879887	1.44691020879887	1.44691020879887	0
+Var: Firm_Interest_Payment 6 n + n n	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0.229668287110932	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0.114834143555466	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0.200959751222065	0	1.69380361744312	1.69380361744312	1.69380361744312	1.69380361744312	1.69380361744312	0
 Var: Firm_Interest_Rate_Long_Term 0 n + n n
 Var: Firm_Interest_Rate_Short_Term 0 n + n n
 Var: Firm_Internal_Finance_Rate 0 n + n n
@@ -1287,59 +1286,59 @@ Var: Firm_Liquidity_Rate 0 n + n n
 Var: Firm_Market_Share 7 n + n n	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.05	0.05	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.125	0.125	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	0.0833333333333333	0.0833333333333333	0	0	0	0	0	1	1	0	0	0	0	0
 Var: Firm_Max_Productivity 6 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Var: Firm_Modernization_Rate 0 n + n n
-Var: Firm_Net_Profits 6 n + n n	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81468966689079	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	1.6832342978106	1.69125	1.69125	1.69125	1.69125	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	4.19358350350078	4.17949842030494	4.17949842030494	4.17949842030494	4.17949842030494	0	8.64470238041277	33.898062432614	33.898062432614	33.898062432614	33.898062432614	0
+Var: Firm_Net_Profits 6 n + n n	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.81045282929724	1.81559270035204	1.81559270035204	1.81559270035204	1.81559270035204	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.60509078297126	1.614375	1.614375	1.614375	1.614375	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	1.61743879627741	1.63825112340108	1.63825112340108	1.63825112340108	1.63825112340108	0	2.31635417802876	13.9203340748897	13.9203340748897	13.9203340748897	13.9203340748897	0
 Var: Firm_Net_Revenue 0 n + n n
 Var: Firm_Planned_Production 0 n + n n
-Var: Firm_Price 1 n + n n	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	1.00046133776208	2.00852164193417	2.00852164193417	2.00852164193417	2.00852164193417	2.00852164193417	2.00852164193417	2.00852164193417	2.00852164193417	1	1	1	1	1	1	1	1	1	1	1	1	0.76552637765869
+Var: Firm_Price 1 n + n n	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	1.0030984452138	2.01122794759557	2.01122794759557	2.01122794759557	2.01122794759557	2.01122794759557	2.01122794759557	2.01122794759557	2.01122794759557	1	1	1	1	1	1	1	1	1	1	1	1	0.740774917881782
 Var: Firm_Price_Period 0 n + n n
-Var: Firm_Productive_Capacity 6 n + n n	6	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	16	16	16	16	16	0	126	126	126	126	126	0
+Var: Firm_Productive_Capacity 6 n + n n	7	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	8	8	8	8	8	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	4	4	4	4	4	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	7	7	7	7	7	0	59	59	59	59	59	0
 Var: Firm_Productive_Capacity_Depreciation 7 n + n n	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0
 Var: Firm_Profit_Rate 0 n + n n
 Var: Firm_Profits 0 n + n n
-Var: Firm_Quality 1 n + n n	1	1	1	1	1.00279552827754	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1.00177413313446	1	1	1	1	1	1	1	1.0012647097504	1	1	1	1.0001387529858	1.00278578691321	1	1	1.00344621704092	1	1.00178732719766
+Var: Firm_Quality 1 n + n n	1	1	1	1	1	1	1	1	1	1.00279552827754	1	1	1	1	1	1	1	1	1	1	1	1	1	1.01276958676802	1	1	1.00177413313446	1	1	1	1	1	1	1	1.0012647097504	1	1	1	1	1	1.0001387529858
 Var: Firm_RND_Expenses 0 n + n n
 Var: Firm_Replacement_Expenses 0 n + n n
 Var: Firm_Retained_Deposits 0 n + n n
 Var: Firm_Retained_Profits 0 n + n n
-Var: Firm_Revenue 1 n + n n	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	6.05476767275086	5.66152037820194	5.66152037820194	5.66152037820194	5.66152037820194	5.66152037820194	5.66152037820194	5.66152037820194	5.66152037820194	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	86.4995364789569
-Var: Firm_Sales 1 n + n n	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	2.81875	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	13.9316614010165	112.993541442047
-Var: Firm_Stock_Deposits 1 n + n n	0	0.429768719845923	0.429768719845923	0.429768719845923	0	0.429768719845923	0.429768719845923	0.429768719845923	0	0.429768719845923	0.429768719845923	0.429768719845923	0	0.429768719845923	0.429768719845923	0.429768719845923	0	0.429768719845923	0.429768719845923	0.429768719845923	0	0.457725033524959	0.457725033524959	0.457725033524959	0	0.457725033524959	0.457725033524959	0.457725033524959	0	0.341415417437056	0.341415417437056	0.341415417437056	1.56489377550289	0.341415417437056	0.341415417437056	0.341415417437056	1.56489377550289	0.341415417437056	0.341415417437056	0.341415417437056	0
-Var: Firm_Stock_Inputs 1 n + n n	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	2.42079026713605	1.1275	1.1275	1.1275	1.1275	1.1275	1.1275	1.1275	1.1275	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	5.57266456040659	45.1974165768186
-Var: Firm_Stock_Inventories 1 n + n n	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.605197566784014	0.281875	0.281875	0.281875	0.281875	0.281875	0.281875	0.281875	0.281875	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	1.39316614010165	11.2993541442047
-Var: Firm_Stock_Loans 1 n + n n	2.751	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	1.365	0.78	0.78	0.78	0.78	0.78	0.78	0.78	0.78	3.12	3.12	3.12	3.12	3.12	3.12	3.12	3.12	3.12	3.12	3.12	3.12	24.57
+Var: Firm_Revenue 1 n + n n	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	6.07072738288215	5.41146019649933	5.41146019649933	5.41146019649933	5.41146019649933	5.41146019649933	5.41146019649933	5.41146019649933	5.41146019649933	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	34.3727811040446
+Var: Firm_Sales 1 n + n n	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	6.05197566784012	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	2.690625	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	5.46083707800359	46.4011135829657
+Var: Firm_Stock_Deposits 1 n + n n	0	0.29886761583613	0.29886761583613	0.29886761583613	0	0.29886761583613	0.29886761583613	0.29886761583613	0	0.29886761583613	0.29886761583613	0.29886761583613	0	0.29886761583613	0.29886761583613	0.29886761583613	0	0.29886761583613	0.29886761583613	0.29886761583613	0	0.397412064939723	0.397412064939723	0.397412064939723	0	0.397412064939723	0.397412064939723	0.397412064939723	0	0.319759603814165	0.319759603814165	0.319759603814165	0	0.319759603814165	0.319759603814165	0.319759603814165	0	0.319759603814165	0.319759603814165	0.319759603814165	0
+Var: Firm_Stock_Inputs 1 n + n n	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	1.51299391696003	0.67265625	0.67265625	0.67265625	0.67265625	0.67265625	0.67265625	0.67265625	0.67265625	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	1.09216741560072	11.6002783957414
+Var: Firm_Stock_Inventories 1 n + n n	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.605197566784013	0.2690625	0.2690625	0.2690625	0.2690625	0.2690625	0.2690625	0.2690625	0.2690625	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	0.54608370780036	4.64011135829657
+Var: Firm_Stock_Loans 1 n + n n	5.61236033175944	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	3.9	1.95	1.95	1.95	1.95	1.95	1.95	1.95	1.95	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	3.4125	28.7625
 Var: Firm_Stock_Loans_Long_Term 0 n + n n
 Var: Firm_Stock_Loans_Short_Term 0 n + n n
 Var: Firm_Total_Funds 0 n + n n
 Var: Firm_Unit_Financial_Cost 0 n + n n
-Var: Firm_Variable_Cost 1 n + n n	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	0.637305226164302	1.29464351363514	1.29464351363514	1.29464351363514	1.29464351363514	1.29464351363514	1.29464351363514	1.29464351363514	1.29464351363514	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.635800709104935	0.637938648048908
-Var: Firm_Wage 1 n + n n	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.0373052261643023	0.694643513635143	0.694643513635143	0.694643513635143	0.694643513635143	0.694643513635143	0.694643513635143	0.694643513635143	0.694643513635143	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	-0.0641992908950646	0.0379386480489082
+Var: Firm_Variable_Cost 1 n + n n	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	0.615843503326578	1.27143777380633	1.27143777380633	1.27143777380633	1.27143777380633	1.27143777380633	1.27143777380633	1.27143777380633	1.27143777380633	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617011023854925	0.617312431568152
+Var: Firm_Wage 1 n + n n	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.240843503326578	0.896437773806326	0.896437773806326	0.896437773806326	0.896437773806326	0.896437773806326	0.896437773806326	0.896437773806326	0.896437773806326	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242011023854925	0.242312431568152
 Var: Firm_Input_Imports 0 n + n n
 Var: Firm_Energy_Cost 0 n + n n
 Var: Firm_Energy_Demand 0 n + n n
 Var: Firm_Energy_Imports 0 n + n n
-Var: Firm_Energy_Tech_Coefficient 1 n + n n	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.3	0.2
+Var: Firm_Energy_Tech_Coefficient 1 n + n n	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.125	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.175	0.125
 Var: Firm_Available_Energy_Ratio 0 n + n n
 Var: Firm_Energy_Tax 0 n + n n
 Var: Firm_Imitation_Energy_Efficiency 0 n + n n
 Var: Firm_Innovation_Energy_Efficiency 0 n + n n
 
-Object: CAPITALS C	6	7	7	7	7	7	7	7	7	7	7	7	7	7	7	7	7	7	7	7	4	4	4	4	4	4	4	4	16	16	16	16	16	16	16	16	16	16	16	16	126
-Param: capital_good_date_birth 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: capital_good_depreciation_period 0 n + n n	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	2	6	10	14	3	7	11	15	0	4	8	12	1	5	9	13	2	6	10	14	3	7	11	15	0	4	8	12	17	33	25	37	61	41	1	45	5	13	21	29	49	53	57	9	62	34	2	38	10	42	18	46	6	14	22	30	50	54	58	26	63	35	3	39	11	43	19	47	7	15	23	31	51	55	59	27	60	32	0	36	8	40	16	44	4	12	20	28	48	52	56	24	17	33	25	37	61	41	1	45	5	13	21	29	49	53	57	9	62	34	2	38	10	42	18	46	6	14	22	30	50	54	58	26	63	35	3	39	11	43	19	47	7	15	23	31	51	55	59	27	60	32	0	36	8	40	16	44	4	12	20	28	48	52	56	24	17	33	25	37	61	41	1	45	5	13	21	29	49	53	57	9	62	34	2	38	10	42	18	46	6	14	22	30	50	54	58	26	63	35	3	39	11	43	19	47	7	15	23	31	51	55	59	27	60	32	0	36	8	40	16	44	4	12	20	28	48	52	56	24	357	237	213	241	501	441	1	257	9	5	17	265	25	445	33	273	41	37	49	281	57	449	65	289	73	69	81	297	89	453	97	305	105	101	113	313	121	457	129	321	137	133	145	329	153	461	161	337	169	165	177	345	185	465	193	353	201	197	209	361	217	469	225	369	233	229	249	253	13	473	29	269	45	21	61	285	77	477	93	301	109	85	125	317	141	481	157	333	173	149	189	349	205	485	221	365	377	53	385	261	393	117	401	293	409	181	417	325	425	245	433	277	381	309	397	341	413	373	389	405	421	437	489	493	497	429
-Param: capital_good_productive_capacity 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
-Param: capital_good_productivity_initial 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
-Param: capital_good_to_depreciate 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: capital_good_to_replace 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: id_capital_good_number 0 n + n n	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	5	9	7	10	16	11	1	12	2	4	6	8	13	14	15	3	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	5	9	7	10	16	11	1	12	2	4	6	8	13	14	15	3	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	5	9	7	10	16	11	1	12	2	4	6	8	13	14	15	3	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	16	9	1	10	3	11	5	12	2	4	6	8	13	14	15	7	90	60	54	61	126	111	1	65	3	2	5	67	7	112	9	69	11	10	13	71	15	113	17	73	19	18	21	75	23	114	25	77	27	26	29	79	31	115	33	81	35	34	37	83	39	116	41	85	43	42	45	87	47	117	49	89	51	50	53	91	55	118	57	93	59	58	63	64	4	119	8	68	12	6	16	72	20	120	24	76	28	22	32	80	36	121	40	84	44	38	48	88	52	122	56	92	95	14	97	66	99	30	101	74	103	46	105	82	107	62	109	70	96	78	100	86	104	94	98	102	106	110	123	124	125	108
-Var: Capital_Good_Acumulated_Production 1 n + n n	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	1	1	1	1	0.0519756678401215	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0.81875	0	1	1	0	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	0	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	0	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	1	1	1	1	1	1	1	1	1	1	1	0.931661401016479	0	0	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0.993541442046535	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	0	0	0	1
+Object: CAPITALS C	7	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	8	4	4	4	4	4	4	4	4	7	7	7	7	7	7	7	7	7	7	7	7	59
+Param: capital_good_date_birth 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: capital_good_depreciation_period 0 n + n n	5	9	13	17	21	25	29	2	6	10	14	18	22	26	30	3	7	11	15	19	23	27	31	0	4	8	12	16	20	24	28	1	5	9	13	17	21	25	29	2	6	10	14	18	22	26	30	3	7	11	15	19	23	27	31	0	4	8	12	16	20	24	28	1	5	9	13	17	21	25	29	2	6	10	14	18	22	26	30	3	7	11	15	19	23	27	31	0	4	8	12	16	20	24	28	1	5	9	13	17	21	25	29	2	6	10	14	18	22	26	30	3	7	11	15	19	23	27	31	0	4	8	12	16	20	24	28	1	5	9	13	17	21	25	29	2	6	10	14	18	22	26	30	3	7	11	15	19	23	27	31	0	4	8	12	16	20	24	28	1	5	9	13	2	6	10	14	3	7	11	15	0	4	8	12	1	5	9	13	2	6	10	14	3	7	11	15	0	4	8	12	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	1	5	9	13	17	21	25	2	6	10	14	18	22	26	3	7	11	15	19	23	27	0	4	8	12	16	20	24	117	201	5	105	233	109	1	121	9	205	17	129	25	21	33	137	41	209	49	145	57	53	65	153	73	213	81	161	89	85	97	169	113	217	13	125	29	69	45	141	61	101	77	157	93	37	177	149	185	165	193	133	189	197	181	221	225	229	173
+Param: capital_good_productive_capacity 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	0	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: capital_good_productivity_initial 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: capital_good_to_depreciate 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: capital_good_to_replace 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: id_capital_good_number 0 n + n n	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	5	6	7	8	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	1	2	3	4	5	6	7	30	51	2	27	59	28	1	31	3	52	5	33	7	6	9	35	11	53	13	37	15	14	17	39	19	54	21	41	23	22	25	43	29	55	4	32	8	18	12	36	16	26	20	40	24	10	45	38	47	42	49	34	48	50	46	56	57	58	44
+Var: Capital_Good_Acumulated_Production 1 n + n n	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	1	1	1	1	0.0519756678401206	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	0.690625	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	1	1	1	0.460837078003592	0	1	1	0	1	1	1	1	1	1	1	1	1	1	0.401113582965664	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	0	1	1	1	1	1	1	1	1	1	0	0	0	1
 Var: Capital_Good_Production 0 n + n n
 Var: Capital_Good_Productivity 0 n + n n
 
 Object: FIRM_LOANS C	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
-Param: firm_loan_fixed_amortization 0 n + n n	0.035	0.03465	0.035	0	0.035	0	0.035	0	0.035	0.03465	0.035	0	0.035	0	0.035	0	0.035	0.03465	0.035	0	0.035	0	0.035	0	0.035	0.03465	0.035	0	0.035	0	0.035	0	0.035	0.03465	0.035	0	0.035	0	0.035	0	0.02	0.0198	0.02	0	0.02	0	0.02	0	0.02	0.0198	0.02	0	0.02	0	0.02	0	0.08	0.0416776556124278	0.08	0	0.08	0	0.08	0	0.08	0.0808	0.08	0	0.08	0	0.08	0	0.08	0.0808	0.08	0	0.08	0	0.08	0	0.63	0.066791857821944
+Param: firm_loan_fixed_amortization 0 n + n n	0.1	0.042809008293986	0.1	0	0.1	0	0.1	0	0.1	0.042809008293986	0.1	0	0.1	0	0.1	0	0.1	0.042809008293986	0.1	0	0.1	0	0.1	0	0.1	0.042809008293986	0.1	0	0.1	0	0.1	0	0.1	0.042809008293986	0.1	0	0.1	0	0.1	0	0.05	0.0403453970663962	0.05	0	0.05	0	0.05	0	0.05	0.0152094255794647	0.05	0	0.05	0	0.05	0	0.0875	0.0422867085945352	0.0875	0	0.0875	0	0.0875	0	0.0875	0.0422867085945352	0.0875	0	0.0875	0	0.0875	0	0.0875	0.0422867085945352	0.0875	0	0.0875	0	0.0875	0	0.7375	0.02270061820648
 Param: firm_loan_fixed_object 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: firm_loan_interest_rate 0 n + n n	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0174170717777329	0.0574170717777329	0.0574170717777329
-Param: firm_loan_total_amount 0 n + n n	1.365	1.386	1.365	0	1.365	0	1.365	0	1.365	1.386	1.365	0	1.365	0	1.365	0	1.365	1.386	1.365	0	1.365	0	1.365	0	1.365	1.386	1.365	0	1.365	0	1.365	0	1.365	1.386	1.365	0	1.365	0	1.365	0	0.78	0.792	0.78	0	0.78	0	0.78	0	0.78	0.792	0.78	0	0.78	0	0.78	0	3.12	1.66710622449711	3.12	0	3.12	0	3.12	0	3.12	3.232	3.12	0	3.12	0	3.12	0	3.12	3.232	3.12	0	3.12	0	3.12	0	24.57	2.67167431287776
+Param: firm_loan_interest_rate 0 n + n n	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0149629315732038	0.0574170717777329	0.0549629315732038
+Param: firm_loan_total_amount 0 n + n n	3.9	1.71236033175944	3.9	0	3.9	0	3.9	0	3.9	1.71236033175944	3.9	0	3.9	0	3.9	0	3.9	1.71236033175944	3.9	0	3.9	0	3.9	0	3.9	1.71236033175944	3.9	0	3.9	0	3.9	0	3.9	1.71236033175944	3.9	0	3.9	0	3.9	0	1.95	1.61381588265585	1.95	0	1.95	0	1.95	0	1.95	0.608377023178589	1.95	0	1.95	0	1.95	0	3.4125	1.69146834378141	3.4125	0	3.4125	0	3.4125	0	3.4125	1.69146834378141	3.4125	0	3.4125	0	3.4125	0	3.4125	1.69146834378141	3.4125	0	3.4125	0	3.4125	0	28.7625	0.908024728259201
 Param: id_firm_loan_long_term 0 n + n n	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1	1	0	1	0	1	0	1	1
 Param: id_firm_loan_short_term 0 n + n n	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0	0	1	0	1	0	1	0	0
 
@@ -1349,31 +1348,31 @@ Var: Cri 0 s + n n
 Var: G_n 0 s + n n
 Var: I 0 s + n n
 Var: U 0 s + n n
-Var: C_r 1 s + n n	2.93022340118939
-Var: I_r 1 s + n n	19.784941742495
+Var: C_r 1 s + n n	5.17168567751192
+Var: I_r 1 s + n n	18.502572882428
 Var: CON_G 0 s + n n
 Var: GDP_G 0 s + n n
 Var: GOV_G 0 s + n n
 Var: INV_G 0 s + n n
 Var: P_G 0 s + n n
-Var: PDEBT 1 s + n n	95.4196946478628
+Var: PDEBT 1 s + n n	106.363273221015
 Var: PDEBT_G 0 s + n n
 Var: PROD 1 s + n n	1
 Var: PROD_G 0 s + n n
-Var: G_r 1 s + n n	28.0161025475192
-Var: M_r 1 s + n n	15.6432532615989
+Var: G_r 1 s + n n	39.4329760796439
+Var: M_r 1 s + n n	8.75045659629798
 Var: PROFITS_G 0 s + n n
 Var: WAGE_G 0 s + n n
 Var: INVE_G 0 s + n n
-Var: INVE_r 1 s + n n	42.3762991611047
+Var: INVE_r 1 s + n n	25.4495671875811
 Var: K_G 0 s + n n
-Var: K_r 1 s + n n	990.808779190613
+Var: K_r 1 s + n n	646.075780124748
 Var: NX_G 0 s + n n
-Var: NX_r 1 s + n n	6.48299692164382
+Var: NX_r 1 s + n n	9.85393149874134
 Var: X_G 0 s + n n
-Var: X_r 1 s + n n	22.1262501832427
+Var: X_r 1 s + n n	18.6043880950393
 Var: M_G 0 s + n n
-Var: MK 1 s + n n	1.47141684061786
+Var: MK 1 s + n n	1.54457629956252
 Var: MK_G 0 s + n n
 Var: HHI_C 0 s + n n
 Var: HHI_I 0 s + n n
@@ -1393,9 +1392,9 @@ Var: U_K 0 s + n n
 Var: W_C 0 s + n n
 Var: W_I 0 s + n n
 Var: W_K 0 s + n n
-Var: DEBT_FS 1 s + n n	96.936
+Var: DEBT_FS 1 s + n n	165.024860331759
 Var: DEBT_FS_G 0 s + n n
-Var: DEBT_FS_LT 1 s + n n	96.936
+Var: DEBT_FS_LT 1 s + n n	165.024860331759
 Var: DEBT_FS_LT_G 0 s + n n
 Var: DEBT_FS_ST 1 s + n n	0
 Var: DEBT_FS_ST_G 0 s + n n
@@ -1404,7 +1403,7 @@ Var: DEBT_RT_CL 0 s + n n
 Var: DEBT_RT_FI 0 s + n n
 Var: DEBT_RT_I 0 s + n n
 Var: DEBT_RT_K 0 s + n n
-Var: DEP_FS 1 s + n n	247.277943869504
+Var: DEP_FS 1 s + n n	313.590415097916
 Var: DEP_FS_G 0 s + n n
 Var: FS_HHI 0 s + n n
 Var: FS_LEV 0 s + n n
@@ -1467,15 +1466,16 @@ Var: U_E 0 s + n n
 Var: W_E 0 s + n n
 Var: ENERGY_PRODUCTION 0 s + n p
 Var: P 0 s + n n
-Var: PROFITS 1 s + n n	116.127341546098
-Var: WAGE 1 s + n n	55.7746648115257
-Var: EMP 1 s + n n	423.762991611047
+Var: PROFITS 1 s + n n	77.8094009561546
+Var: WAGE 1 s + n n	103.176421547774
+Var: EMP 1 s + n n	254.495671875811
 Var: CPI 0 s + n n
 Var: GDP_r 0 s + n n
+Var: GDP_r_income 0 s + n n
 
 SIM_NUM 1
-SEED 2
-MAX_STEP 1
+SEED 1
+MAX_STEP 100
 EQUATION fun_micro_macro_v.3.6.cpp
 MODELREPORT report_Sim1.html
 
@@ -1702,7 +1702,7 @@ END_DESCRIPTION
 Variable_Country_Avg_Productivity
 (no description available)
 _INIT_
-
+All 1 instances equal to 1.
 END_DESCRIPTION
 
 Variable_Country_Avg_Profit_Rate
@@ -2012,7 +2012,7 @@ _INIT_
 All 1 instances equal to 0.005.
 END_DESCRIPTION
 
-Parameter_time_energy_policy
+Parameter_begin_energy_policy
 (no description available)
 _INIT_
 All 1 instances equal to 19.
@@ -2365,24 +2365,6 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_Class_Effective_Real_Energy
-Class effective real domestic consumption, depending on how much the domestic consumption goods sector was able to meet demand.
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Class_Real_Desired_Energy
-Class real domestic energy consumption is based on the amount of consumption goods, domestic and imported. All class's energy demand is provided domestically
-_INIT_
-
-END_DESCRIPTION
-
-Variable_Class_Real_Energy_Demand
-Class effective energy demand. 
-_INIT_
-
-END_DESCRIPTION
-
 Parameter_class_autonomous_energy_adjustment
 (no description available)
 _INIT_
@@ -2403,6 +2385,24 @@ END_DESCRIPTION
 
 Variable_Class_Real_Autonomous_Energy
 Class autonomous energy consumption depends on the average quality growth of the energy sector
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Real_Desired_Energy
+Class real domestic energy consumption is based on the amount of consumption goods, domestic and imported. All class's energy demand is provided domestically
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Real_Energy_Demand
+Class effective energy demand. 
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Class_Effective_Real_Energy
+Class effective real domestic consumption, depending on how much the domestic consumption goods sector was able to meet demand.
 _INIT_
 
 END_DESCRIPTION
@@ -3185,12 +3185,6 @@ Parameter_cb_target_reserves
 (no description available)
 _INIT_
 All 1 instances equal to 0.5.
-END_DESCRIPTION
-
-Parameter_cb_sensitivity_reserves
-(no description available)
-_INIT_
-All 1 instances equal to 0.
 END_DESCRIPTION
 
 Object_GOVERNMENT
@@ -5830,6 +5824,12 @@ _INIT_
 END_DESCRIPTION
 
 Variable_GDP_r
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GDP_r_income
 (no description available)
 _INIT_
 
